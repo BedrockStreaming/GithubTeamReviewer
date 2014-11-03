@@ -8,14 +8,14 @@ A monitoring tool that allows you to quickly view all Github pull requests of yo
 
 #### Clone the project
 
-```
+```shell
 $ git clone https://github.com/M6Web/GithubTeamReviewer.git
 $ cd GithubTeamReviewer
 ```
 
 #### Install dependencies
 
-```
+```shell
 $ npm install -g bower gulp
 $ npm install
 $ bower install
