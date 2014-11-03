@@ -31,7 +31,7 @@ Options :
 * **teams** : list of teams, keys are teams names and you can define these properties for each :
   * *members* : an array of Github usernames,
   * *org* : an array of Github organizations,
-  * *apiUrl* : url of your Github API (optional, defaut is `https://api.github.com`),
+  * *apiUrl* : url of your Github API (optional, default is `https://api.github.com`),
   * *token* : authorization token for API calls (optional, it can increase API rate limit).
 
 
