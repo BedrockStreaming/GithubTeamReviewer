@@ -6,7 +6,7 @@
                 "members": ["username1", "username2", "username3"],
                 "orgs": ["orgname1", "orgname2"],
                 "apiUrl": "https://api.github.com",
-                "token': "apitoken"
+                "token': "apiToken"
             }
         }
     }
