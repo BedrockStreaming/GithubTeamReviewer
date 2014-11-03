@@ -26,8 +26,7 @@ gulp.task('protractor-only', ['webdriver-update', 'wiredep:dev'], function (done
 
   gulp.src(testFiles)
     .pipe($.protractor.protractor({
-      configFile: 'test/protractor.conf.js',
-      debug: true
+      configFile: 'test/protractor.conf.js'
     }))
     .on('error', function (err) {
       // Make sure failed tests cause gulp to exit non-zero

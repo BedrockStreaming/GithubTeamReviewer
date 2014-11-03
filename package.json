@@ -1,5 +1,5 @@
 {
-  "name": "githubteamreviewer",
+  "name": "github-team-reviewer",
   "version": "0.0.0",
   "dependencies": {},
   "devDependencies": {
@@ -40,6 +40,6 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "gulp test:dist"
   }
 }
