@@ -19,7 +19,7 @@ gulp.task('webdriver-update', $.protractor.webdriver_update);
 
 gulp.task('webdriver-standalone', $.protractor.webdriver_standalone);
 
-gulp.task('protractor-only', ['webdriver-update', 'wiredep:dev'], function (done) {
+gulp.task('protractor-only', ['webdriver-update'], function (done) {
   var testFiles = [
     'test/e2e/**/*.js'
   ];
@@ -39,10 +39,17 @@ gulp.task('protractor-only', ['webdriver-update', 'wiredep:dev'], function (done
     });
 });
 
-gulp.task('test', ['scripts-tests', 'scripts', 'serve:e2e', 'protractor-only']);
-gulp.task('test:dist', ['scripts-tests'], function (done) {
+gulp.task('test', function (done) {
   $.runSequence(
-    'serve:e2e-dist',
+    ['scripts-tests', 'scripts:strict', 'serve:e2e', 'wiredep:dev'],
+    'protractor-only',
+    done
+  );
+});
+
+gulp.task('test:dist', function (done) {
+  $.runSequence(
+    ['scripts-tests', 'serve:e2e-dist'],
     'protractor-only',
     done
   );

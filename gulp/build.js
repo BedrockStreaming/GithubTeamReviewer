@@ -90,7 +90,7 @@ gulp.task('clean', function (done) {
 gulp.task('build', function (done) {
   $.runSequence(
     'clean',
-    'config',
+    ['config', 'wiredep'],
     ['html', 'extras'],
     done
   );
@@ -98,7 +98,7 @@ gulp.task('build', function (done) {
 gulp.task('build:test', function (done) {
   $.runSequence(
     'clean',
-    'config:test',
+    ['config:test', 'wiredep:dev'],
     ['html', 'extras'],
     done
   );
