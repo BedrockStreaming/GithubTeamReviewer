@@ -1,0 +1,17 @@
+{
+    "config": {
+        "refreshInterval": 90,
+        "teams": {
+            "cytron": {
+                "members": ["karlouche", "bieber"],
+                "orgs": ["m6web", "replay"],
+                "apiUrl": "/api/v3"
+            },
+            "burton": {
+                "members": ["papy", "worker"],
+                "orgs": ["m6web"],
+                "apiUrl": "/api/v3"
+            }
+        }
+    }
+}
