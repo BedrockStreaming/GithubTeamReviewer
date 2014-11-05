@@ -1,13 +1,8 @@
 # dependecies for node
-package { 'g++':
-    ensure => present
+class { 'nodejs':
+  version => 'stable',
+  make_install => false
 } ->
-
-package { 'make':
-    ensure => present
-}
-
-include nodejs
 
 # essentials package
 
@@ -22,8 +17,13 @@ package { 'vim':
 # npm modules
 
 package { 'gulp':
-  provider => npm
+  ensure => present,
+  provider => 'npm',
+  require  => Class['nodejs']
 } ->
+
 package { 'bower':
-  provider => npm
+  ensure => present,
+  provider => 'npm',
+  require  => Class['nodejs']
 }
