@@ -56,19 +56,19 @@ http://gtr-url/index.html#/myTeam
 
 #### Clone and init the project
 
-```
+```shell
 $ git clone https://github.com/M6Web/GithubTeamReviewer.git
 ```
 
 Install [Vagrant](http://www.vagrantup.com/downloads) and configure `Vagrantfile` :
 
-```
+```shell
 $ cp Vagrantfile.dist Vagrantfile
 ```
 
 *Note : configure your own Vagrantfile and provisionning if necessary.*
 
-```
+```shell
 $ vagrant up
 $ vagrant ssh
 $ cd /vagrant
@@ -76,7 +76,7 @@ $ cd /vagrant
 
 #### Install dependencies
 
-```
+```shell
 $ sudo npm install --no-bin-links
 $ bower install
 ```
