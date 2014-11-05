@@ -4,7 +4,7 @@ exports.config = {
   //seleniumAddress: 'http://localhost:4444/wd/hub',
   seleniumServerJar: '../node_modules/protractor/selenium/selenium-server-standalone-2.43.1.jar', // Make use you check the version in the folder
 
-  baseUrl: 'http://localhost:3000/',
+  baseUrl: 'http://localhost:9000/',
 
   // Capabilities to be passed to the webdriver instance.
   capabilities: {
