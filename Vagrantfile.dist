@@ -9,10 +9,13 @@ Vagrant::Config.run do |config|
 
     config.vm.share_folder("vagrant-root", "/vagrant", ".", :nfs => false)
 
-    config.vm.provision :shell do |shell|
-        shell.inline = "puppet module install puppetlabs/nodejs --force --modulepath '/vagrant/modules'"
-    end
+    $script = <<EOF
+puppet module install maestrodev/wget --force --modulepath '/vagrant/modules'
+puppet module install puppetlabs/stdlib --force --modulepath '/vagrant/modules'
+puppet module install willdurand/nodejs --force --modulepath '/vagrant/modules'
+EOF
 
+    config.vm.provision :shell, :inline => $script
     config.vm.provision :shell, path: "manifests/bootstrap.sh"
     config.vm.provision :puppet do |puppet|
         puppet.module_path = "modules"
