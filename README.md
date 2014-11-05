@@ -34,19 +34,12 @@ Options :
   * *apiUrl* : url of your Github API (optional, default is `https://api.github.com`),
   * *token* : authorization token for API calls (optional, it can increase API rate limit).
 
-
 ## Run the server
 
 After configuration, you have to build the code and launch the server.
 
 ```shell
 $ gulp serve:dist
-```
-
-For development, you can launch the server on the unbuilt code.
-
-```shell
-$ gulp serve
 ```
 
 It will automatically open the dashboard in your browser.
@@ -58,6 +51,45 @@ Use directly the page path in order to select a team.
 ```
 http://gtr-url/index.html#/myTeam
 ```
+
+## Installation for dev
+
+#### Clone and init the project
+
+```
+$ git clone https://github.com/M6Web/GithubTeamReviewer.git
+```
+
+Install [Vagrant](http://www.vagrantup.com/downloads) and configure `Vagrantfile` :
+
+```
+$ cp Vagrantfile.dist Vagrantfile
+```
+
+*Note : configure your own Vagrantfile and provisionning if necessary.*
+
+```
+$ vagrant up
+$ vagrant ssh
+$ cd /vagrant
+```
+
+#### Install dependencies
+
+```
+$ sudo npm install --no-bin-links
+$ bower install
+```
+
+[Configure your application](#configuration) via `config/config.json`.
+
+#### Run the server
+
+```shell
+$ gulp serve
+```
+
+You can now access the application at `http://localhost:8888`.
 
 ## Tests
 
