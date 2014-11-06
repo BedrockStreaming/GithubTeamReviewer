@@ -59,6 +59,12 @@ Use directly the page path in order to select a team.
 http://gtr-url/index.html#/myTeam
 ```
 
+The color are linked with the PR status :
+* *black* when there is no test
+* *yellow* when the tests are running
+* *red* when tests fail
+* *green* when tests are successful
+
 ## Tests
 
 Test the unbuilt code :
