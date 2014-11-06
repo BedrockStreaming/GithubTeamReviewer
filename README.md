@@ -52,6 +52,12 @@ Use directly the page path in order to select a team.
 http://gtr-url/index.html#/myTeam
 ```
 
+Colors show the PR statuses :
+* *black* when there is no test
+* *yellow* when the tests are running
+* *red* when tests fail
+* *green* when tests are successful
+
 ## Installation for dev
 
 #### Clone and init the project
@@ -90,7 +96,7 @@ $ bower install
 $ gulp serve
 ```
 
-You can now access the application at `http://localhost:8888`.
+You can now access the application at `http://localhost:9000`.
 
 ## Tests
 
