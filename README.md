@@ -90,7 +90,7 @@ $ bower install
 $ gulp serve
 ```
 
-You can now access the application at `http://localhost:8888`.
+You can now access the application at `http://localhost:9000`.
 
 ## Tests
 
