@@ -70,8 +70,8 @@ $ cp Vagrantfile.dist Vagrantfile
 
 ```shell
 $ vagrant up
-$ vagrant ssh
 $ vagrant provision # because of npm issue on the first vagrant up 
+$ vagrant ssh
 $ cd /vagrant
 ```
 
