@@ -233,28 +233,28 @@ describe('Test GTR screen', function () {
       expect(pulls).toEqual([
         {
           index: 0,
-          text: '#56 PR 56\nm6web/service-polls 28/10/2014\n ',
+          text: '#56 PR 56\nm6web/service-polls 28/10/2014',
           class: 'success',
           avatar: 'http://example.com/bieber.jpg',
           pullUrl: 'http://example.com/m6web/service-polls/pull/56'
         },
         {
           index: 1,
-          text: '#50 PR 50\nreplay/bundle-polls-client 10/08/2014\n ',
+          text: '#50 PR 50\nreplay/bundle-polls-client 10/08/2014',
           class: 'pending',
           avatar: 'http://example.com/karlouche.jpg',
           pullUrl: 'http://example.com/replay/bundle-polls-client/pull/50'
         },
         {
           index: 2,
-          text: '#54 PR 54\nm6web/service-polls 28/07/2014\n ',
+          text: '#54 PR 54\nm6web/service-polls 28/07/2014',
           class: '',
           avatar: 'http://example.com/karlouche.jpg',
           pullUrl: 'http://example.com/m6web/service-polls/pull/54'
         },
         {
           index: 3,
-          text: '#49 PR 49\nreplay/bundle-polls-client 28/07/2014\n ',
+          text: '#49 PR 49\nreplay/bundle-polls-client 28/07/2014',
           class: 'failure',
           avatar: 'http://example.com/bieber.jpg',
           pullUrl: 'http://example.com/replay/bundle-polls-client/pull/49'
@@ -269,7 +269,7 @@ describe('Test GTR screen', function () {
 
       expect(pulls).toEqual([{
           index: 0,
-          text: '#55 PR 55\nm6web/service-polls 28/08/2014\n ',
+          text: '#55 PR 55\nm6web/service-polls 28/08/2014',
           class: '',
           avatar: 'http://example.com/papy.jpg',
           pullUrl: 'http://example.com/m6web/service-polls/pull/55'

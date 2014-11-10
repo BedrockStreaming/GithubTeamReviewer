@@ -45,6 +45,11 @@ ul.pulls li {
   margin-bottom: 10px;
   padding: 0 20px;
   line-height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+ul.pulls li .link, ul.pulls li .pull-right {
+  white-space: nowrap;
 }
 
 ul.pulls li.status {
