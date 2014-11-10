@@ -8,8 +8,11 @@
         <li ng-repeat="pr in toArray(pulls) | orderBy:'updated_at':true" ng-class="pr.statuses[0].state" class="status">
             <img class="avatar" ng-src="{{ pr.user.avatar_url}}" />
             <span class="link"><a ng-href="{{pr.html_url}}" >#{{ pr.number }} {{ pr.title }}</a></span>
-            <span class="date pull-right">{{pr.updated_at | date:"dd/MM/yyyy"}}</span>
-            <span class="repo pull-right"><a ng-href="{{pr.head.repo.html_url}}" >{{ pr.head.repo.full_name }}</a></span>
+            <span class="pull-right">
+                <span class="repo"><a ng-href="{{pr.head.repo.html_url}}" >{{ pr.head.repo.full_name }}</a></span>
+                <span class="date">{{pr.updated_at | date:"dd/MM/yyyy"}}</span>
+            </span>
+            <div class="clearer">&nbsp;</div>
         </li>
     </ul>
 </div>

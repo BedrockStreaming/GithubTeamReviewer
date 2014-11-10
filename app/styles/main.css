@@ -43,8 +43,7 @@ ul.pulls {
 
 ul.pulls li {
   margin-bottom: 10px;
-  padding: 0 20px 0 0;
-  height: 40px;
+  padding: 0 20px;
   line-height: 40px;
 }
 
@@ -61,7 +60,7 @@ ul.pulls li.status.pending {
     background-color: #cea61b;
 }
 ul.pulls li .avatar {
-  margin: 5px;
+  margin: 5px 5px 5px -15px;
   border-radius: 9000px;
   height: 30px;
   vertical-align: middle;
@@ -76,4 +75,10 @@ ul.pulls .repo {
 
 .pull-right {
   float: right;
+  text-align: right;
+}
+
+.clearer {
+  line-height: 0;
+  clear: both;
 }
