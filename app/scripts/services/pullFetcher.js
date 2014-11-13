@@ -42,9 +42,6 @@ angular.module('gtrApp')
           currentTeam.orgs.forEach(function (org) {
             getRepos(currentApiUrl + '/orgs/' + org);
           });
-          currentTeam.members.forEach(function (user) {
-            getRepos(currentApiUrl + '/users/' + user);
-          });
         }
       };
 
