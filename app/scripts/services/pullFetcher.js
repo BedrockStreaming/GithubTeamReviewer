@@ -61,6 +61,10 @@ angular.module('gtrApp')
         return (currentTeam.members || [pull.user.login]).indexOf(pull.user.login) !== -1;
       };
 
+      var filterRepos = function (repo) {
+        return (currentTeam.projects || [repo.name]).indexOf(repo.name) !== -1;
+      };
+
       var addStatusToPull = function (pull) {
         request(pull.statuses_url).then(function (response) {
           pull.statuses = response.data;
@@ -83,7 +87,8 @@ angular.module('gtrApp')
         }
         request(url + '/repos?per_page=100&page=' + page)
           .then(function (response) {
-            response.data.forEach(function (repo) {
+            var filtered = response.data.filter(filterRepos);
+            filtered.forEach(function (repo) {
               getRepoPulls(repo).then(function (pulls) {
                 pulls.forEach(function (pull) {
                   pullFetcher.pulls[pull.id] = pull;
