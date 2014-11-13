@@ -53,7 +53,7 @@ angular.module('gtrApp')
       };
 
       var filterPulls = function (pull) {
-        return currentTeam.members.indexOf(pull.user.login) !== -1;
+        return (currentTeam.members || [pull.user.login]).indexOf(pull.user.login) !== -1;
       };
 
       var addStatusToPull = function (pull) {
