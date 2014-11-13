@@ -42,9 +42,11 @@ angular.module('gtrApp')
           currentTeam.orgs.forEach(function (org) {
             getRepos(currentApiUrl + '/orgs/' + org);
           });
-          currentTeam.members.forEach(function (user) {
-            getRepos(currentApiUrl + '/users/' + user);
-          });
+          if (typeof(currentTeam.members) !== 'undefined') {
+            currentTeam.members.forEach(function (user) {
+              getRepos(currentApiUrl + '/users/' + user);
+            });
+          }
         }
       };
 
@@ -56,7 +58,7 @@ angular.module('gtrApp')
       };
 
       var filterPulls = function (pull) {
-        return currentTeam.members.indexOf(pull.user.login) !== -1;
+        return (currentTeam.members || [pull.user.login]).indexOf(pull.user.login) !== -1;
       };
 
       var addStatusToPull = function (pull) {
