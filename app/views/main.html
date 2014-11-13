@@ -5,7 +5,7 @@
 
 <div class="container">
     <ul class="pulls">
-        <li ng-repeat="pr in toArray(pulls) | orderBy:'updated_at':true" ng-class="pr.statuses[0].state" class="status">
+        <li ng-repeat="pr in toArray(pulls) | orderBy:'updated_at':false" ng-class="pr.statuses[0].state" class="status">
             <span class="link"><img class="avatar" ng-src="{{ pr.user.avatar_url}}" /><a ng-href="{{pr.html_url}}" >#{{ pr.number }} {{ pr.title }}</a></span>
             <span class="pull-right">
                 <span class="repo"><a ng-href="{{pr.head.repo.html_url}}" >{{ pr.head.repo.full_name }}</a></span>
