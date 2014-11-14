@@ -93,7 +93,8 @@ describe('Test GTR screen', function () {
         'head': {
           'repo': {
             'html_url': 'http://example.com/m6web/service-polls',
-            'full_name': 'm6web/service-polls'
+            'full_name': 'm6web/service-polls',
+            'name': 'service-polls'
           }
         }
       },
@@ -115,7 +116,8 @@ describe('Test GTR screen', function () {
         'head': {
           'repo': {
             'html_url': 'http://example.com/m6web/service-polls',
-            'full_name': 'm6web/service-polls'
+            'full_name': 'm6web/service-polls',
+            'name': 'service-polls'
           }
         }
       },
@@ -137,7 +139,8 @@ describe('Test GTR screen', function () {
         'head': {
           'repo': {
             'html_url': 'http://example.com/m6web/service-polls',
-            'full_name': 'm6web/service-polls'
+            'full_name': 'm6web/service-polls',
+            'name': 'service-polls'
           }
         }
       }]);
@@ -159,7 +162,8 @@ describe('Test GTR screen', function () {
         'head': {
           'repo': {
             'html_url': 'http://example.com/replay/bundle-polls-client',
-            'full_name': 'replay/bundle-polls-client'
+            'full_name': 'replay/bundle-polls-client',
+            'name': 'bundle-polls-client'
           }
         }
       },
@@ -181,7 +185,8 @@ describe('Test GTR screen', function () {
         'head': {
           'repo': {
             'html_url': 'http://example.com/replay/bundle-polls-client',
-            'full_name': 'replay/bundle-polls-client'
+            'full_name': 'replay/bundle-polls-client',
+            'name': 'bundle-polls-client'
           }
         }
       }]);
