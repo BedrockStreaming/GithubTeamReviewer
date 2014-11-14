@@ -18,7 +18,8 @@ describe('Test GTR screen', function () {
 
       expect(teams).toEqual([
         {index: 0, text: 'burton'},
-        {index: 1, text: 'cytron'}
+        {index: 1, text: 'cytron'},
+        {index: 2, text: 'service-polls'}
       ]);
     });
 
@@ -279,6 +280,36 @@ describe('Test GTR screen', function () {
           avatar: 'http://example.com/papy.jpg',
           pullUrl: 'http://example.com/m6web/service-polls/pull/55'
       }]);
+    });
+
+    it('should display service-polls PR', function () {
+      browser.get('#/service-polls');
+
+      var pulls = element.all(by.css('.pulls li')).map(getPulls);
+
+      expect(pulls).toEqual([
+        {
+          index: 0,
+          text: '#54 PR 54\nm6web/service-polls 28/07/2014',
+          class: '',
+          avatar: 'http://example.com/karlouche.jpg',
+          pullUrl: 'http://example.com/m6web/service-polls/pull/54'
+        },
+        {
+          index: 1,
+          text: '#55 PR 55\nm6web/service-polls 28/08/2014',
+          class: '',
+          avatar: 'http://example.com/papy.jpg',
+          pullUrl: 'http://example.com/m6web/service-polls/pull/55'
+        },
+        {
+          index: 2,
+          text: '#56 PR 56\nm6web/service-polls 28/10/2014',
+          class: 'success',
+          avatar: 'http://example.com/bieber.jpg',
+          pullUrl: 'http://example.com/m6web/service-polls/pull/56'
+        }
+      ]);
     });
   });
 });
