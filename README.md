@@ -36,19 +36,12 @@ Options :
   * *apiUrl* : url of your Github API (optional, default is `https://api.github.com`),
   * *token* : authorization token for API calls (optional, it can increase API rate limit).
 
-
 ## Run the server
 
 After configuration, you have to build the code and launch the server.
 
 ```shell
 $ gulp serve:dist
-```
-
-For development, you can launch the server on the unbuilt code.
-
-```shell
-$ gulp serve
 ```
 
 It will automatically open the dashboard in your browser.
@@ -66,6 +59,46 @@ Colors show the PR statuses :
 * *yellow* when the tests are running
 * *red* when tests fail
 * *green* when tests are successful
+
+## Installation for dev
+
+#### Clone and init the project
+
+```shell
+$ git clone https://github.com/M6Web/GithubTeamReviewer.git
+```
+
+Install [Vagrant](http://www.vagrantup.com/downloads) and configure `Vagrantfile` :
+
+```shell
+$ cp Vagrantfile.dist Vagrantfile
+```
+
+*Note : configure your own Vagrantfile and provisionning if necessary.*
+
+```shell
+$ vagrant up
+$ vagrant provision # because of npm issue on the first vagrant up 
+$ vagrant ssh
+$ cd /vagrant
+```
+
+#### Install dependencies
+
+```shell
+$ sudo npm install --no-bin-links
+$ bower install
+```
+
+[Configure your application](#configuration) via `config/config.json`.
+
+#### Run the server
+
+```shell
+$ gulp serve
+```
+
+You can now access the application at `http://localhost:9000`.
 
 ## Tests
 

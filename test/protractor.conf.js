@@ -1,6 +1,6 @@
 // An example configuration file.
 exports.config = {
-  baseUrl: 'http://localhost:3000/',
+  baseUrl: 'http://localhost:9000/',
 
   // Capabilities to be passed to the webdriver instance.
   capabilities: {

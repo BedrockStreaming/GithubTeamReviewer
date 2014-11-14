@@ -15,7 +15,8 @@ function browserSyncInit(baseDir, files, browser) {
       baseDir: baseDir,
       middleware: middleware
     },
-    browser: browser
+    browser: browser,
+    port: 9000
   });
 
 }

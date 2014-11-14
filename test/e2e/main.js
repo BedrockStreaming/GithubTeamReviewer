@@ -7,7 +7,7 @@ describe('Test GTR screen', function () {
 
   describe('Basic tests', function () {
     it('should list teams', function () {
-      browser.get('http://localhost:3000/');
+      browser.get('/');
 
       var teams = element.all(by.css('header select option')).map(function(element, index) {
         return {
