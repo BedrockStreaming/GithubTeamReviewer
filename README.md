@@ -36,6 +36,7 @@ Options :
   * *org* : an array of Github organizations,
   * *apiUrl* : url of your Github API (optional, default is `https://api.github.com`),
   * *token* : authorization token for API calls (optional, it can increase API rate limit).
+  * *orderBy* : allow to change ordering of pull requests (optional, default is descending).
 
 
 ## Run the server
