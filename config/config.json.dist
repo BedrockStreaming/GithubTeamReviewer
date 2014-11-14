@@ -1,6 +1,7 @@
 {
     "config": {
         "refreshInterval": 90,
+        "orderBy": true,
         "teams": {
             "myTeam": {
                 "members": ["username1", "username2", "username3"],

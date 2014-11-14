@@ -6,6 +6,12 @@ angular.module('gtrApp')
     $scope.teams = config.teams;
     $scope.team  = team;
 
+    if (typeof(config.teams[team].orderBy) !== 'undefined') {
+      $scope.orderBy = config.teams[team].orderBy;
+    } else {
+      $scope.orderBy = true;
+    }
+
     $scope.toArray = function (items) {
       var array = [];
       angular.forEach(items, function(item) {
