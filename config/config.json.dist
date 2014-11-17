@@ -1,14 +1,14 @@
 {
     "config": {
         "refreshInterval": 90,
-        "orderBy": true,
         "teams": {
             "myTeam": {
                 "members": ["username1", "username2", "username3"],
                 "projects": ["repo1", "repo2"],
                 "orgs": ["orgname1", "orgname2"],
                 "apiUrl": "https://api.github.com",
-                "token": "apiToken"
+                "token": "apiToken",
+                "descendingOrder": true
             }
         }
     }

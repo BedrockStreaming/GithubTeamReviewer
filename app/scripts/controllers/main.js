@@ -6,10 +6,10 @@ angular.module('gtrApp')
     $scope.teams = config.teams;
     $scope.team  = team;
 
-    if (typeof(config.teams[team].orderBy) !== 'undefined') {
-      $scope.orderBy = config.teams[team].orderBy;
+    if (typeof(config.teams[team].descendingOrder) !== 'undefined') {
+      $scope.descendingOrder = config.teams[team].descendingOrder;
     } else {
-      $scope.orderBy = true;
+      $scope.descendingOrder = true;
     }
 
     $scope.toArray = function (items) {
