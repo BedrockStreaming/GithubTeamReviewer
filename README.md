@@ -31,10 +31,12 @@ Options :
 
 * **refreshInterval** : time between 2 dashboard updates (be careful with low interval because you can reach API rate limit quickly),
 * **teams** : list of teams, keys are teams names and you can define these properties for each :
-  * *members* : an array of Github usernames,
+  * *members* : an array of Github usernames (optional, default get all members),
+  * *projects* : an array of Github repository's names (optional, default get all repositories),
   * *org* : an array of Github organizations,
   * *apiUrl* : url of your Github API (optional, default is `https://api.github.com`),
   * *token* : authorization token for API calls (optional, it can increase API rate limit).
+  * *descendingOrder* : allow to change ordering of pull requests (optional, default is true).
 
 ## Run the server
 

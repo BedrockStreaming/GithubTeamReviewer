@@ -42,9 +42,11 @@ angular.module('gtrApp')
           currentTeam.orgs.forEach(function (org) {
             getRepos(currentApiUrl + '/orgs/' + org);
           });
-          currentTeam.members.forEach(function (user) {
-            getRepos(currentApiUrl + '/users/' + user);
-          });
+          if (typeof(currentTeam.members) !== 'undefined') {
+            currentTeam.members.forEach(function (user) {
+              getRepos(currentApiUrl + '/users/' + user);
+            });
+          }
         }
       };
 
@@ -56,7 +58,11 @@ angular.module('gtrApp')
       };
 
       var filterPulls = function (pull) {
-        return currentTeam.members.indexOf(pull.user.login) !== -1;
+        return (currentTeam.members || [pull.user.login]).indexOf(pull.user.login) !== -1;
+      };
+
+      var filterRepos = function (repo) {
+        return (currentTeam.projects || [repo.name]).indexOf(repo.name) !== -1;
       };
 
       var addStatusToPull = function (pull) {
@@ -81,7 +87,8 @@ angular.module('gtrApp')
         }
         request(url + '/repos?per_page=100&page=' + page)
           .then(function (response) {
-            response.data.forEach(function (repo) {
+            var filtered = response.data.filter(filterRepos);
+            filtered.forEach(function (repo) {
               getRepoPulls(repo).then(function (pulls) {
                 pulls.forEach(function (pull) {
                   pullFetcher.pulls[pull.id] = pull;
