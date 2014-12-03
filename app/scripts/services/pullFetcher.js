@@ -4,7 +4,7 @@ angular.module('gtrApp')
   .provider('PullFetcher', function () {
     var baseUrl = 'https://api.github.com';
 
-    this.$get = ['$http', function ($http) {
+    this.$get = ['$http', '$q', function ($http, $q) {
 
       var currentTeam,
         currentApiUrl,
@@ -66,7 +66,7 @@ angular.module('gtrApp')
       };
 
       var addStatusToPull = function (pull) {
-        request(pull.statuses_url).then(function (response) {
+        return request(pull.statuses_url).then(function (response) {
           pull.statuses = response.data;
         });
       };
@@ -75,9 +75,10 @@ angular.module('gtrApp')
         return request(repo.pulls_url.replace('{/number}', ''))
           .then(function (response) {
             var filtered = response.data.filter(filterPulls);
-            filtered.forEach(addStatusToPull);
 
-            return filtered;
+            return $q.all(filtered.map(addStatusToPull)).then(function() {
+              return filtered;
+            });
           });
       };
 
