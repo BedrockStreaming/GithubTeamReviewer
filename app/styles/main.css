@@ -58,7 +58,7 @@ ul.pulls li.status {
 ul.pulls li.status.success {
     background-color: #39c5a0;
 }
-ul.pulls li.status.failure {
+ul.pulls li.status.failure, ul.pulls li.status.error {
     background-color: #ac3939;
 }
 ul.pulls li.status.pending {
