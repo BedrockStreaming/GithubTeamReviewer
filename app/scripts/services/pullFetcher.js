@@ -4,7 +4,7 @@ angular.module('gtrApp')
   .provider('PullFetcher', function () {
     var baseUrl = 'https://api.github.com';
 
-    this.$get = ['$http', function ($http) {
+    this.$get = ['$http', '$q', function ($http, $q) {
 
       var currentTeam,
         currentApiUrl,
@@ -42,9 +42,11 @@ angular.module('gtrApp')
           currentTeam.orgs.forEach(function (org) {
             getRepos(currentApiUrl + '/orgs/' + org);
           });
-          currentTeam.members.forEach(function (user) {
-            getRepos(currentApiUrl + '/users/' + user);
-          });
+          if (typeof(currentTeam.members) !== 'undefined') {
+            currentTeam.members.forEach(function (user) {
+              getRepos(currentApiUrl + '/users/' + user);
+            });
+          }
         }
       };
 
@@ -56,11 +58,15 @@ angular.module('gtrApp')
       };
 
       var filterPulls = function (pull) {
-        return currentTeam.members.indexOf(pull.user.login) !== -1;
+        return (currentTeam.members || [pull.user.login]).indexOf(pull.user.login) !== -1;
+      };
+
+      var filterRepos = function (repo) {
+        return (currentTeam.projects || [repo.name]).indexOf(repo.name) !== -1;
       };
 
       var addStatusToPull = function (pull) {
-        request(pull.statuses_url).then(function (response) {
+        return request(pull.statuses_url).then(function (response) {
           pull.statuses = response.data;
         });
       };
@@ -69,9 +75,10 @@ angular.module('gtrApp')
         return request(repo.pulls_url.replace('{/number}', ''))
           .then(function (response) {
             var filtered = response.data.filter(filterPulls);
-            filtered.forEach(addStatusToPull);
 
-            return filtered;
+            return $q.all(filtered.map(addStatusToPull)).then(function() {
+              return filtered;
+            });
           });
       };
 
@@ -81,7 +88,8 @@ angular.module('gtrApp')
         }
         request(url + '/repos?per_page=100&page=' + page)
           .then(function (response) {
-            response.data.forEach(function (repo) {
+            var filtered = response.data.filter(filterRepos);
+            filtered.forEach(function (repo) {
               getRepoPulls(repo).then(function (pulls) {
                 pulls.forEach(function (pull) {
                   pullFetcher.pulls[pull.id] = pull;

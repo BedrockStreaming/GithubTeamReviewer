@@ -7,7 +7,7 @@ describe('Test GTR screen', function () {
 
   describe('Basic tests', function () {
     it('should list teams', function () {
-      browser.get('http://localhost:3000/');
+      browser.get('/');
 
       var teams = element.all(by.css('header select option')).map(function(element, index) {
         return {
@@ -18,7 +18,8 @@ describe('Test GTR screen', function () {
 
       expect(teams).toEqual([
         {index: 0, text: 'burton'},
-        {index: 1, text: 'cytron'}
+        {index: 1, text: 'cytron'},
+        {index: 2, text: 'service-polls'}
       ]);
     });
 
@@ -93,7 +94,8 @@ describe('Test GTR screen', function () {
         'head': {
           'repo': {
             'html_url': 'http://example.com/m6web/service-polls',
-            'full_name': 'm6web/service-polls'
+            'full_name': 'm6web/service-polls',
+            'name': 'service-polls'
           }
         }
       },
@@ -115,7 +117,8 @@ describe('Test GTR screen', function () {
         'head': {
           'repo': {
             'html_url': 'http://example.com/m6web/service-polls',
-            'full_name': 'm6web/service-polls'
+            'full_name': 'm6web/service-polls',
+            'name': 'service-polls'
           }
         }
       },
@@ -137,7 +140,8 @@ describe('Test GTR screen', function () {
         'head': {
           'repo': {
             'html_url': 'http://example.com/m6web/service-polls',
-            'full_name': 'm6web/service-polls'
+            'full_name': 'm6web/service-polls',
+            'name': 'service-polls'
           }
         }
       }]);
@@ -159,7 +163,8 @@ describe('Test GTR screen', function () {
         'head': {
           'repo': {
             'html_url': 'http://example.com/replay/bundle-polls-client',
-            'full_name': 'replay/bundle-polls-client'
+            'full_name': 'replay/bundle-polls-client',
+            'name': 'bundle-polls-client'
           }
         }
       },
@@ -181,7 +186,8 @@ describe('Test GTR screen', function () {
         'head': {
           'repo': {
             'html_url': 'http://example.com/replay/bundle-polls-client',
-            'full_name': 'replay/bundle-polls-client'
+            'full_name': 'replay/bundle-polls-client',
+            'name': 'bundle-polls-client'
           }
         }
       }]);
@@ -233,28 +239,28 @@ describe('Test GTR screen', function () {
       expect(pulls).toEqual([
         {
           index: 0,
-          text: '#56 PR 56\n28/10/2014\nm6web/service-polls',
+          text: '#56 PR 56\nm6web/service-polls 28/10/2014',
           class: 'success',
           avatar: 'http://example.com/bieber.jpg',
           pullUrl: 'http://example.com/m6web/service-polls/pull/56'
         },
         {
           index: 1,
-          text: '#50 PR 50\n10/08/2014\nreplay/bundle-polls-client',
+          text: '#50 PR 50\nreplay/bundle-polls-client 10/08/2014',
           class: 'pending',
           avatar: 'http://example.com/karlouche.jpg',
           pullUrl: 'http://example.com/replay/bundle-polls-client/pull/50'
         },
         {
           index: 2,
-          text: '#54 PR 54\n28/07/2014\nm6web/service-polls',
+          text: '#54 PR 54\nm6web/service-polls 28/07/2014',
           class: '',
           avatar: 'http://example.com/karlouche.jpg',
           pullUrl: 'http://example.com/m6web/service-polls/pull/54'
         },
         {
           index: 3,
-          text: '#49 PR 49\n28/07/2014\nreplay/bundle-polls-client',
+          text: '#49 PR 49\nreplay/bundle-polls-client 28/07/2014',
           class: 'failure',
           avatar: 'http://example.com/bieber.jpg',
           pullUrl: 'http://example.com/replay/bundle-polls-client/pull/49'
@@ -269,11 +275,41 @@ describe('Test GTR screen', function () {
 
       expect(pulls).toEqual([{
           index: 0,
-          text: '#55 PR 55\n28/08/2014\nm6web/service-polls',
+          text: '#55 PR 55\nm6web/service-polls 28/08/2014',
           class: '',
           avatar: 'http://example.com/papy.jpg',
           pullUrl: 'http://example.com/m6web/service-polls/pull/55'
       }]);
+    });
+
+    it('should display service-polls PR', function () {
+      browser.get('#/service-polls');
+
+      var pulls = element.all(by.css('.pulls li')).map(getPulls);
+
+      expect(pulls).toEqual([
+        {
+          index: 0,
+          text: '#54 PR 54\nm6web/service-polls 28/07/2014',
+          class: '',
+          avatar: 'http://example.com/karlouche.jpg',
+          pullUrl: 'http://example.com/m6web/service-polls/pull/54'
+        },
+        {
+          index: 1,
+          text: '#55 PR 55\nm6web/service-polls 28/08/2014',
+          class: '',
+          avatar: 'http://example.com/papy.jpg',
+          pullUrl: 'http://example.com/m6web/service-polls/pull/55'
+        },
+        {
+          index: 2,
+          text: '#56 PR 56\nm6web/service-polls 28/10/2014',
+          class: 'success',
+          avatar: 'http://example.com/bieber.jpg',
+          pullUrl: 'http://example.com/m6web/service-polls/pull/56'
+        }
+      ]);
     });
   });
 });

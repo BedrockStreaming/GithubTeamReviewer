@@ -11,6 +11,12 @@
                 "members": ["papy", "worker"],
                 "orgs": ["m6web"],
                 "apiUrl": "/api/v3"
+            },
+            "service-polls": {
+                "descendingOrder": false,
+                "projects": ["service-polls"],
+                "orgs": ["m6web", "replay"],
+                "apiUrl": "/api/v3"
             }
         }
     }
