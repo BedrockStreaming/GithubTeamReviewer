@@ -1,10 +1,18 @@
 <header class="header-top">
-  <a href="http://github.com/m6web/GithubTeamReviewer">Github Team Reviewer</a> by <a href="http://tech.m6web.fr">M6Web</a>
-  <select ng-model="team" ng-options="teamName as teamName for (teamName, team) in teams"></select>
+    <div class="link">
+        <a href="http://github.com/m6web/GithubTeamReviewer">Github Team Reviewer</a> by <a href="http://tech.m6web.fr">M6Web</a>
+    </div>
+    <div class="display-choice">
+        List <input type="radio" ng-model="display" value="list">
+        <input type="radio" ng-model="display" value="wallDisplay"> Wall Display
+    </div>
+    <div class="team-choice">
+        <select ng-model="team" ng-options="teamName as teamName for (teamName, team) in teams"></select>
+    </div>
 </header>
 
-<div class="container" ng-class="{'wall-display': wallDisplay}">
-    <ul class="pulls" ng-if="!wallDisplay">
+<div class="container" ng-class="{'wall-display': display === 'wallDisplay'}">
+    <ul class="pulls" ng-if="display === 'list'">
         <li ng-repeat="pr in toArray(pulls) | orderBy:'updated_at':descendingOrder" ng-class="pr.statuses[0].state" class="status">
             <span class="link"><img class="avatar" ng-src="{{ pr.user.avatar_url}}" title="{{ pr.user.login }}" /><a ng-href="{{pr.html_url}}" >#{{ pr.number }} {{ pr.title }}</a></span>
             <span class="pull-right">
@@ -15,7 +23,7 @@
         </li>
     </ul>
 
-    <ul class="pulls" ng-if="wallDisplay">
+    <ul class="pulls" ng-if="display === 'wallDisplay'">
         <li ng-repeat="pr in toArray(pulls) | orderBy:'updated_at':descendingOrder" ng-class="pr.statuses[0].state" class="status">
             <img class="avatar" ng-src="{{ pr.user.avatar_url}}" title="{{ pr.user.login }}" />
             <div class="pull-number"><a ng-href="{{pr.html_url}}" >#{{ pr.number }}</a></div>

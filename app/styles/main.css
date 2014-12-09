@@ -20,15 +20,24 @@ a {
   font-size: 13px;
   line-height: 20px;
   padding: 6px 16px;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.header-top div {
+  flex-grow: 1;
 }
 
 .header-top a {
   font-weight: bold;
 }
 
-.header-top select {
-  float: right;
-  margin-right: 6px;
+.header-top .team-choice {
+  text-align: right;
+}
+
+.header-top .display-choice {
+  text-align: center;
 }
 
 .header-users {
