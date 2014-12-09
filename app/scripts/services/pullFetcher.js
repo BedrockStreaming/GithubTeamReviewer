@@ -71,12 +71,20 @@ angular.module('gtrApp')
         });
       };
 
+      var addLabelsToPull = function (pull) {
+        return request(pull.issue_url).then(function (response) {
+          pull.labels = response.data.labels;
+        });
+      };
+
       var getRepoPulls = function (repo) {
         return request(repo.pulls_url.replace('{/number}', ''))
           .then(function (response) {
             var filtered = response.data.filter(filterPulls);
 
             return $q.all(filtered.map(addStatusToPull)).then(function() {
+              return $q.all(filtered.map(addLabelsToPull));
+            }).then(function() {
               return filtered;
             });
           });

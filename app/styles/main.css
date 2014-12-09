@@ -1,3 +1,7 @@
+html, body {
+  height: 100%;
+}
+
 body {
   background-color: #ecf0f1;
   color: #efefef;
@@ -25,7 +29,7 @@ a {
 .header-top select {
   float: right;
   margin-right: 6px;
-} 
+}
 
 .header-users {
   background-color: #3cc0bf;
@@ -86,4 +90,58 @@ ul.pulls .repo {
 .clearer {
   line-height: 0;
   clear: both;
+}
+
+
+/**
+ * Overwrites for wall-display version
+ */
+
+body.wall-display {
+  margin: 0;
+  padding: 0;
+}
+
+.container.wall-display {
+  height: 100%;
+  padding: 0;
+}
+
+.wall-display ul.pulls {
+  display: flex;
+  flex-flow: row wrap;
+  height: 100%;
+}
+
+.wall-display ul.pulls li {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-sizing: border-box;
+  line-height: initial;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.wall-display ul.pulls li .avatar {
+  border-radius: 50%;
+  height: 5.25em;
+  margin: 0;
+  padding: 0;
+}
+
+.wall-display .pull-number {
+  font-size: 4em;
+  font-weight: bold;
+}
+
+.wall-display .labels {
+  font-size: 1.5em;
+}
+
+.wall-display .repo {
+  font-size: 1.5em;
 }

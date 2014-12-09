@@ -3,8 +3,8 @@
   <select ng-model="team" ng-options="teamName as teamName for (teamName, team) in teams"></select>
 </header>
 
-<div class="container">
-    <ul class="pulls">
+<div class="container" ng-class="{'wall-display': wallDisplay}">
+    <ul class="pulls" ng-if="!wallDisplay">
         <li ng-repeat="pr in toArray(pulls) | orderBy:'updated_at':descendingOrder" ng-class="pr.statuses[0].state" class="status">
             <span class="link"><img class="avatar" ng-src="{{ pr.user.avatar_url}}" title="{{ pr.user.login }}" /><a ng-href="{{pr.html_url}}" >#{{ pr.number }} {{ pr.title }}</a></span>
             <span class="pull-right">
@@ -12,6 +12,18 @@
                 <span class="date">{{pr.updated_at | date:"dd/MM/yyyy"}}</span>
             </span>
             <div class="clearer">&nbsp;</div>
+        </li>
+    </ul>
+
+    <ul class="pulls" ng-if="wallDisplay">
+        <li ng-repeat="pr in toArray(pulls) | orderBy:'updated_at':descendingOrder" ng-class="pr.statuses[0].state" class="status">
+            <img class="avatar" ng-src="{{ pr.user.avatar_url}}" title="{{ pr.user.login }}" />
+            <div class="pull-number"><a ng-href="{{pr.html_url}}" >#{{ pr.number }}</a></div>
+            <div class="labels">
+                <span ng-if="!pr.labels.length">&nbsp;</span>
+                <span class="label" ng-repeat="label in pr.labels" ng-style="{'background-color': '#' + label.color, 'color': '#' + getVisibleTextColor(label.color)}">{{label.name}}</span>
+            </div>
+            <div class="repo"><a ng-href="{{pr.head.repo.html_url}}" >{{ pr.head.repo.name }}</a></div>
         </li>
     </ul>
 </div>
