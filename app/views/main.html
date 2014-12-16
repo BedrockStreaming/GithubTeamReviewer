@@ -26,7 +26,7 @@
     <ul class="pulls" ng-if="display === 'wallDisplay'">
         <li ng-repeat="pr in toArray(pulls) | orderBy:'updated_at':descendingOrder" ng-class="pr.statuses[0].state" class="status">
             <img class="avatar" ng-src="{{ pr.user.avatar_url}}" title="{{ pr.user.login }}" />
-            <div class="pull-number"><a ng-href="{{pr.html_url}}" >#{{ pr.number }}</a></div>
+            <div class="pull-number" title="{{pr.title}}"><a ng-href="{{pr.html_url}}" >#{{ pr.number }}</a></div>
             <div class="labels">
                 <span ng-if="!pr.labels.length">&nbsp;</span>
                 <span class="label" ng-repeat="label in pr.labels" ng-style="{'background-color': '#' + label.color, 'color': '#' + getVisibleTextColor(label.color)}">{{label.name}}</span>
