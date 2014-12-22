@@ -132,7 +132,8 @@ body.wall-display {
   line-height: initial;
   text-align: center;
   margin: 0;
-  padding: 0;
+  padding: 0.5em;
+  border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .wall-display ul.pulls li .avatar {
@@ -152,5 +153,5 @@ body.wall-display {
 }
 
 .wall-display .repo {
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
