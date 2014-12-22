@@ -4,7 +4,7 @@ angular.module('gtrApp')
   .provider('PullFetcher', function () {
     var baseUrl = 'https://api.github.com';
 
-    this.$get = ['$http', '$q', function ($http, $q) {
+    this.$get = ['$http', '$q', 'config', function ($http, $q, config) {
 
       var currentTeam,
         currentApiUrl,
@@ -83,6 +83,7 @@ angular.module('gtrApp')
             var filtered = response.data.filter(filterPulls);
 
             return $q.all(filtered.map(addStatusToPull)).then(function() {
+              if (!config.fetchAndDisplayTags) { return; }
               return $q.all(filtered.map(addLabelsToPull));
             }).then(function() {
               return filtered;

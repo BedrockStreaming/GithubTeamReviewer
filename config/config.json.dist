@@ -10,6 +10,7 @@
                 "token": "apiToken",
                 "descendingOrder": true
             }
-        }
+        },
+        "fetchAndDisplayTags": true
     }
 }

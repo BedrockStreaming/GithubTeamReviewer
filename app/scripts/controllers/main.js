@@ -6,6 +6,7 @@ angular.module('gtrApp')
     $scope.teams = config.teams;
     $scope.team  = team;
     $scope.wallDisplay = config.wallDisplay;
+    $scope.fetchAndDisplayTags = config.fetchAndDisplayTags;
     $scope.display = localStorage.getItem('display') || 'list';
     $scope.$watch('display', function(displayValue) {
       localStorage.setItem('display', displayValue);
