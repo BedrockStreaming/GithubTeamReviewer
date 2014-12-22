@@ -6,7 +6,10 @@ angular.module('gtrApp')
     $scope.teams = config.teams;
     $scope.team  = team;
     $scope.wallDisplay = config.wallDisplay;
-    $scope.display = 'list';
+    $scope.display = localStorage.getItem('display') || 'list';
+    $scope.$watch('display', function(displayValue) {
+      localStorage.setItem('display', displayValue);
+    });
 
     if (typeof(config.teams[team].descendingOrder) !== 'undefined') {
       $scope.descendingOrder = config.teams[team].descendingOrder;
