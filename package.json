@@ -42,6 +42,6 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "gulp test:dist"
+    "test": "grunt test"
   }
 }
