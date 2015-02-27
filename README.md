@@ -37,6 +37,7 @@ Options :
   * *apiUrl* : url of your Github API (optional, default is `https://api.github.com`),
   * *token* : authorization token for API calls (optional, it can increase API rate limit).
   * *descendingOrder* : allow to change ordering of pull requests (optional, default is `true`).
+* **fetchAndDisplayTags** : fetch tags associated to pull requests for the wall display (makes more requests to the API)
 
 ## Run the server
 
@@ -61,6 +62,10 @@ Colors show the PR statuses :
 * *yellow* when the tests are running
 * *red* when tests fail
 * *green* when tests are successful
+
+Two different display options are available :
+* List
+* Wall-display
 
 ## Installation for dev
 
