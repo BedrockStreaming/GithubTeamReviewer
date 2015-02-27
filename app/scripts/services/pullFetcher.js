@@ -83,7 +83,9 @@ angular.module('gtrApp')
             var filtered = response.data.filter(filterPulls);
 
             return $q.all(filtered.map(addStatusToPull)).then(function() {
-              if (!config.fetchAndDisplayTags) { return; }
+              if (!config.fetchAndDisplayTags) {
+                return;
+              }
               return $q.all(filtered.map(addLabelsToPull));
             }).then(function() {
               return filtered;

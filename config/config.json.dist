@@ -11,6 +11,6 @@
                 "descendingOrder": true
             }
         },
-        "fetchAndDisplayTags": true
+        "fetchAndDisplayTags": false
     }
 }

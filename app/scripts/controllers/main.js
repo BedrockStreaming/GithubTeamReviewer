@@ -5,7 +5,6 @@ angular.module('gtrApp')
     $scope.pulls = PullFetcher.pulls;
     $scope.teams = config.teams;
     $scope.team  = team;
-    $scope.wallDisplay = config.wallDisplay;
     $scope.fetchAndDisplayTags = config.fetchAndDisplayTags;
     $scope.display = localStorage.getItem('display') || 'list';
     $scope.$watch('display', function(displayValue) {
@@ -36,6 +35,7 @@ angular.module('gtrApp')
       var g = parseInt(bgcolor.substr(2,2),16);
       var b = parseInt(bgcolor.substr(4,2),16);
       var yiq = ((r*299)+(g*587)+(b*114))/1000;
+
       return yiq >= 128 ? '000' : 'fff';
     };
 
