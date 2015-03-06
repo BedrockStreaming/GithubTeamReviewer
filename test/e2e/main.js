@@ -79,6 +79,7 @@ describe('Test GTR screen', function () {
       backend.whenGET('/api/v3/repos/m6web/service-polls/pulls').respond([{
         'id': 6467,
         'html_url': 'http://example.com/m6web/service-polls/pull/54',
+        'issue_url': '/api/v3/repos/m6web/service-polls/issues/54',
         'number': 54,
         'title': 'PR 54',
         'state': 'open',
@@ -102,6 +103,7 @@ describe('Test GTR screen', function () {
       {
         'id': 6468,
         'html_url': 'http://example.com/m6web/service-polls/pull/55',
+        'issue_url': '/api/v3/repos/m6web/service-polls/issues/55',
         'number': 55,
         'title': 'PR 55',
         'state': 'open',
@@ -125,6 +127,7 @@ describe('Test GTR screen', function () {
       {
         'id': 6469,
         'html_url': 'http://example.com/m6web/service-polls/pull/56',
+        'issue_url': '/api/v3/repos/m6web/service-polls/issues/56',
         'number': 56,
         'title': 'PR 56',
         'state': 'open',
@@ -148,6 +151,7 @@ describe('Test GTR screen', function () {
       backend.whenGET('/api/v3/repos/replay/bundle-polls-client/pulls').respond([{
         'id': 5895,
         'html_url': 'http://example.com/replay/bundle-polls-client/pull/49',
+        'issue_url': '/api/v3/repos/replay/bundle-polls-client/issues/49',
         'number': 49,
         'title': 'PR 49',
         'state': 'open',
@@ -171,6 +175,7 @@ describe('Test GTR screen', function () {
       {
         'id': 5896,
         'html_url': 'http://example.com/replay/bundle-polls-client/pull/50',
+        'issue_url': '/api/v3/repos/replay/bundle-polls-client/issues/50',
         'number': 50,
         'title': 'PR 50',
         'state': 'open',
@@ -206,6 +211,23 @@ describe('Test GTR screen', function () {
       backend.whenGET('/api/v3/repos/replay/bundle-polls-client/statuses/50').respond([{
         'state': 'pending'
       }]);
+
+      // Issues (for labels)
+      backend.whenGET('/api/v3/repos/m6web/service-polls/issues/54').respond({
+        labels: [{name: 'bug', color: 'E11D21' }]
+      });
+      backend.whenGET('/api/v3/repos/m6web/service-polls/issues/55').respond({
+        labels: [{name: 'discussion', color: 'BFE5BF' }]
+      });
+      backend.whenGET('/api/v3/repos/m6web/service-polls/issues/56').respond({
+        labels: []
+      });
+      backend.whenGET('/api/v3/repos/replay/bundle-polls-client/issues/49').respond({
+        labels: []
+      });
+      backend.whenGET('/api/v3/repos/replay/bundle-polls-client/issues/50').respond({
+        labels: []
+      });
 
       // Others
       backend.whenGET(/.*/).passThrough();
