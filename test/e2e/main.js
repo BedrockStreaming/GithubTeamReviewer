@@ -196,15 +196,28 @@ describe('Test GTR screen', function () {
       backend.whenGET('/api/v3/repos/m6web/service-polls/statuses/54').respond([]);
       backend.whenGET('/api/v3/repos/m6web/service-polls/statuses/55').respond([]);
       backend.whenGET('/api/v3/repos/m6web/service-polls/statuses/56').respond([{
+        'context': 'default',
         'state': 'success'
       }]);
       backend.whenGET('/api/v3/repos/replay/bundle-polls-client/statuses/49').respond([{
-        'state': 'failure'
+        'context': 'default',
+        'state': 'success'
       }, {
+        'context': 'foobar',
+        'state': 'pending'
+      }, {
+        'context': 'foobar',
         'state': 'success'
       }]);
       backend.whenGET('/api/v3/repos/replay/bundle-polls-client/statuses/50').respond([{
-        'state': 'pending'
+        'context': 'default',
+        'state': 'failure'
+      }, {
+        'context': 'default',
+        'state': 'success'
+      }, {
+        'context': 'foobar',
+        'state': 'success'
       }]);
 
       // Others
@@ -247,7 +260,7 @@ describe('Test GTR screen', function () {
         {
           index: 1,
           text: '#50 PR 50\nreplay/bundle-polls-client 10/08/2014',
-          class: 'pending',
+          class: 'failure',
           avatar: 'http://example.com/karlouche.jpg',
           pullUrl: 'http://example.com/replay/bundle-polls-client/pull/50'
         },
@@ -261,7 +274,7 @@ describe('Test GTR screen', function () {
         {
           index: 3,
           text: '#49 PR 49\nreplay/bundle-polls-client 28/07/2014',
-          class: 'failure',
+          class: 'pending',
           avatar: 'http://example.com/bieber.jpg',
           pullUrl: 'http://example.com/replay/bundle-polls-client/pull/49'
         }
