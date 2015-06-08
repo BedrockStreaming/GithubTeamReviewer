@@ -1,3 +1,5 @@
+/* global _ */
+
 'use strict';
 
 angular.module('gtrApp')
@@ -12,9 +14,51 @@ angular.module('gtrApp')
       $scope.descendingOrder = true;
     }
 
+    var statePriorities = {
+      'error':   4,
+      'failure': 3,
+      'pending': 2,
+      'success': 1
+    };
+
+    /**
+     * Sort statuses by priority
+     *
+     * @param array statuses
+     */
+    var sortStatuses = function (statuses) {
+
+      // Group statuses by their context
+      var statusesGrouped = _.groupBy(statuses, function (status) {
+        return status.context;
+      });
+
+      // Get first status of each context
+      statuses = _.toArray(statusesGrouped).map(function (statuses) {
+        return statuses[0];
+      });
+
+      // Sort statuses by state priority
+      statuses.sort(function (a, b) {
+        var aPriority = statePriorities[a.state];
+        var bPriority = statePriorities[b.state];
+
+        if (aPriority === bPriority) {
+          return 0;
+        }
+
+        return (aPriority > bPriority ? -1 : 1);
+      });
+
+      return statuses;
+    };
+
     $scope.toArray = function (items) {
       var array = [];
       angular.forEach(items, function(item) {
+
+        item.statuses = sortStatuses(item.statuses);
+
         array.push(item);
       });
 
