@@ -6,6 +6,7 @@ body {
 a {
   text-decoration: none;
   color: inherit;
+  cursor: pointer;
 }
 
 .header-top {
@@ -25,7 +26,7 @@ a {
 .header-top select {
   float: right;
   margin-right: 6px;
-} 
+}
 
 .header-users {
   background-color: #3cc0bf;
@@ -86,4 +87,82 @@ ul.pulls .repo {
 .clearer {
   line-height: 0;
   clear: both;
+}
+
+.popover-content {
+  padding: 9px 14px;
+}
+
+* {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.popover-container {
+  position: relative;
+}
+
+.popover.bottom {
+  margin-top: 26px;
+}
+.popover {
+  border-color: #eee;
+  border-bottom: 2px solid #e4eaec;
+  border-radius: 3px;
+}
+.progress, .progress .progress-bar, .popover {
+  box-shadow: 0 0 0 #000;
+}
+.popover {
+  position: absolute;
+  top: 0;
+  left: -155px;
+  z-index: 9;
+  max-width: 276px;
+  padding: 1px;
+  text-align: left;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #e1e1e1;
+  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+  white-space: normal;
+}
+
+.popover.bottom>.arrow {
+  right: 0;
+  margin-left: -22px;
+  border-top-width: 0;
+  border-bottom-color: #fff;
+  top: -11px;
+}
+.popover>.arrow {
+  border-width: 11px;
+}
+.popover>.arrow, .popover>.arrow:after {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+
+.popover li {
+  border-bottom: 1px solid #ccc;
+}
+.popover li:last-child {
+  border-bottom: 0;
+}
+
+.popover .login-li {
+  color: #373;
+}
+.popover .logout-li {
+  color: #a44;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
