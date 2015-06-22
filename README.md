@@ -48,6 +48,15 @@ $ gulp serve:dist
 
 It will automatically open the dashboard in your browser.
 
+## OAuth
+
+To use GTR with GitHub OAuth you must :
+* Register a new application on GitHub (in Settings > Applications)
+* Install [Gatekeeper](https://github.com/prose/gatekeeper) and launch it
+* Set your "gatekeeperBaseUrl" and type in your app data (clientId and GitHub URL) in config/config.json (example in config.json.dist)
+
+Then, you should see the Auth button in the upper-right corner of the app !
+
 ## Use
 
 Use directly the page path in order to select a team.

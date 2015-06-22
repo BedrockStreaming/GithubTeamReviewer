@@ -21,15 +21,17 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <ng-view></ng-view>
+    <div ui-view=""></div>
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/es5-shim/es5-shim.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/json3/lib/json3.js"></script>
     <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="bower_components/uri.js/src/URI.js"></script>
+    <script src="bower_components/angular-uri/angular-uri.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -37,6 +39,8 @@
     <script src="scripts/config.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/services/pullFetcher.js"></script>
+    <script src="scripts/services/authManager.js"></script>
+    <script src="scripts/controllers/auth.js"></script>
     <script src="scripts/controllers/main.js"></script>
 
     <!-- inject:partials -->

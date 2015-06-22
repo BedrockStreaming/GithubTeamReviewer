@@ -3,7 +3,15 @@
 'use strict';
 
 angular.module('gtrApp')
-  .controller('MainCtrl', function ($scope, $location, $interval, PullFetcher, config, team) {
+  .controller('MainCtrl', function ($scope, $location, $interval, PullFetcher, authManager, config, team) {
+    var oauthEnabled    = !angular.isUndefined(config.githubOAuth);
+    $scope.oauthEnabled = oauthEnabled;
+    if (oauthEnabled) {
+      authManager.authenticateTeams();
+      $scope.loginUrls       = authManager.getLoginUrls();
+      $scope.logoutClientIds = authManager.getLogoutClientIds();
+    }
+
     $scope.pulls = PullFetcher.pulls;
     $scope.teams = config.teams;
     $scope.team  = team;
@@ -63,6 +71,12 @@ angular.module('gtrApp')
       });
 
       return array;
+    };
+
+    $scope.logout = function(clientId) {
+      authManager.logout(clientId);
+      $scope.loginUrls       = authManager.getLoginUrls();
+      $scope.logoutClientIds = authManager.getLogoutClientIds();
     };
 
     $scope.$watch('team', function (team) {

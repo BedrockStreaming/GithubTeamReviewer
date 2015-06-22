@@ -2,25 +2,33 @@
 
 angular
   .module('gtrApp', [
-    'ngRoute',
+    'ui.router',
+    'angular-uri',
     'gtrApp.config'
-  ]).config(function ($routeProvider, config) {
-    $routeProvider
-      .when('/:team', {
+  ]).config(function ($stateProvider, $urlRouterProvider, config) {
+    $stateProvider
+
+      .state('auth', {
+        url: '/auth',
+        controller: 'AuthCtrl',
+        reloadOnSearch: false
+      })
+
+      .state('main', {
+        url: '/:team',
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
-        resolve: {team: function($q, $route, config) {
+        resolve: {team: function($q, $stateParams, config) {
           var defer = $q.defer();
-          if (config.teams[$route.current.params.team]) {
-            defer.resolve($route.current.params.team);
+          if (config.teams[$stateParams.team]) {
+            defer.resolve($stateParams.team);
           } else {
             defer.reject('Team does not exist');
           }
 
           return defer.promise;
         }}
-      })
-      .otherwise({
-        redirectTo: '/' + Object.keys(config.teams)[0]
       });
+
+      $urlRouterProvider.otherwise('/' + Object.keys(config.teams)[0]);
   });

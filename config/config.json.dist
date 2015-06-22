@@ -1,5 +1,18 @@
 {
     "config": {
+        "githubOAuth": {
+            "gatekeeperBaseUrl": "http://localhost:9999",
+            "apps": [
+                {
+                    "url": "https://github.enterprise.fr",
+                    "clientId":""
+                },
+                {
+                    "url": "https://github.com",
+                    "clientId":""
+                }
+            ]
+        },
         "refreshInterval": 90,
         "teams": {
             "myTeam": {
@@ -8,7 +21,8 @@
                 "orgs": ["orgname1", "orgname2"],
                 "apiUrl": "https://api.github.com",
                 "token": "apiToken",
-                "descendingOrder": true
+                "descendingOrder": true,
+                "oauthAppClientId":""
             }
         }
     }
