@@ -35,8 +35,14 @@ Options :
   * *projects* : an array of Github repository's names (optional, default get all repositories),
   * *org* : an array of Github organizations,
   * *apiUrl* : url of your Github API (optional, default is `https://api.github.com`),
-  * *token* : authorization token for API calls (optional, it can increase API rate limit).
   * *descendingOrder* : allow to change ordering of pull requests (optional, default is `true`).
+  * *token* : authorization token for API calls (optional, it can allow access to more repos and increase API rate limit) NB: if a token is set, OAuth will be ignored for the team
+  * *oauthAppClientId* : clientId of the OAuth app the team depends on (optional)
+* **githubOAuth** : OAuth config (optional)
+  * *gatekeeperBaseUrl* : url to [Gatekeeper](https://github.com/M6Web/gatekeeper) (see OAuth section)
+  * *apps* : list of the apps you use to auth
+    * *url* : base url of GitHub (should be https://github.com or the base url of your GitHub enterprise)
+    * *clientId* : clientId of the app
 
 ## Run the server
 
@@ -47,6 +53,16 @@ $ gulp serve:dist
 ```
 
 It will automatically open the dashboard in your browser.
+
+## OAuth
+
+To use GTR with GitHub OAuth you must :
+* Register a new application on GitHub (in Settings > Applications)
+* Install [Gatekeeper](https://github.com/M6Web/gatekeeper) and launch it
+* Set your "gatekeeperBaseUrl" and type in your app data (clientId and GitHub URL) in config/config.json (example in config.json.dist)
+* Don't forget to link the OAuth app to the teams thanks to the oauthAppClientId property
+
+Then, you should see the Auth button in the upper-right corner of the app !
 
 ## Use
 
@@ -80,7 +96,7 @@ $ cp Vagrantfile.dist Vagrantfile
 
 ```shell
 $ vagrant up
-$ vagrant provision # because of npm issue on the first vagrant up 
+$ vagrant provision # because of npm issue on the first vagrant up
 $ vagrant ssh
 $ cd /vagrant
 ```
