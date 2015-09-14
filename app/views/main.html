@@ -1,5 +1,17 @@
 <header class="header-top">
   <a href="http://github.com/m6web/GithubTeamReviewer">Github Team Reviewer</a> by <a href="http://tech.m6web.fr">M6Web</a>
+  <div ng-show="oauthEnabled" class="pull-right popover-container">
+    <a class="btn btn-link" ng-click="authPopover = !authPopover">Auth</a>
+    <div class="popover bottom" ng-show="authPopover">
+      <div class="arrow"></div>
+      <div class="popover-content">
+        <ul>
+          <li ng-repeat="login in loginUrls" class="login-li"><a href="{{ login.loginUrl }}">Authenticate to {{ login.githubHostname }}</a></li>
+          <li ng-repeat="logoutData in logoutClientIds" class="logout-li"><a ng-click="logout(logoutData.clientId)">Logout from {{ logoutData.githubHostname }}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
   <select ng-model="team" ng-options="teamName as teamName for (teamName, team) in teams"></select>
 </header>
 

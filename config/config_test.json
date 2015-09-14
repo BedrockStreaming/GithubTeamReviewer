@@ -1,5 +1,18 @@
 {
     "config": {
+        "githubOAuth": {
+          "gatekeeperBaseUrl": "http://gatekeeper:9999",
+          "apps": [
+            {
+              "url": "https://github.somewhere.fr",
+              "clientId":"c13nt1D"
+            },
+            {
+              "url": "https://github.com",
+              "clientId":"90n3y"
+            }
+          ]
+        },
         "refreshInterval": 90,
         "teams": {
             "cytron": {
