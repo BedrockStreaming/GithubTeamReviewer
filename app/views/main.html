@@ -12,6 +12,7 @@
       </div>
     </div>
   </div>
+  <span class="pull-right pr-counter">{{ toArray(pulls).length }} PR</span>
   <select ng-model="team" ng-options="teamName as teamName for (teamName, team) in teams"></select>
 </header>
 
