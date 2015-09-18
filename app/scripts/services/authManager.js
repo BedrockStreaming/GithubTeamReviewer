@@ -89,14 +89,12 @@ angular.module('gtrApp')
 
       authenticateTeams: function() {
         var accessTokens = this.getAccessTokens();
-        if (accessTokens.length) {
-          // Add OAuth token on each team if found
-          _.forEach(config.teams, function(team) {
-            if (!team.token && team.oauthAppClientId && accessTokens[team.oauthAppClientId]) {
-              team.token = accessTokens[team.oauthAppClientId];
-            }
-          });
-        }
+        // Add OAuth token on each team if found
+        _.forEach(config.teams, function(team) {
+          if (!team.token && team.oauthAppClientId && accessTokens[team.oauthAppClientId]) {
+            team.token = accessTokens[team.oauthAppClientId];
+          }
+        });
       },
 
       logout: function(clientId) {
