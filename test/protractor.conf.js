@@ -1,3 +1,5 @@
+'use strict';
+
 // An example configuration file.
 exports.config = {
   baseUrl: 'http://localhost:9000/',
