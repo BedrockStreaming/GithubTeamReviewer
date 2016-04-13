@@ -36,6 +36,8 @@ Options :
   * *org* : an array of Github organizations,
   * *apiUrl* : url of your Github API (optional, default is `https://api.github.com`),
   * *descendingOrder* : allow to change ordering of pull requests (optional, default is `true`).
+  * *labels* : display labels of pull requests (optional, default is `false`).
+  * *milestones* : display milestones of pull requests (optional, default is `false`).
   * *token* : authorization token for API calls (optional, it can allow access to more repos and increase API rate limit) NB: if a token is set, OAuth will be ignored for the team
   * *oauthAppClientId* : clientId of the OAuth app the team depends on (optional)
 * **githubOAuth** : OAuth config (optional)

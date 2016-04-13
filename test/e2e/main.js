@@ -50,6 +50,22 @@ describe('Test GTR screen', function () {
       element(by.cssContainingText('header select option', 'burton')).click();
       expect(browser.getLocationAbsUrl()).toBe('/burton');
     });
+
+    it('should not display labels and milestones by default', function () {
+      browser.get('#/cytron');
+      expect(element(by.css('.pulls li:eq(0) .badge-label')).isPresent()).toBe(false);
+      expect(element(by.css('.pulls li:eq(0) .badge-milestone')).isPresent()).toBe(false);
+    });
+
+    it('should display labels when enabled', function () {
+      browser.get('#/burton');
+      expect(element(by.css('.pulls li:eq(0) .badge-label')).isPresent()).toBe(true);
+    });
+
+    it('should display milestones when enabled', function () {
+      browser.get('#/service-polls');
+      expect(element(by.css('.pulls li:eq(2) .badge-milestone')).isPresent()).toBe(true);
+    });
   });
 
   describe('Test with API calls', function () {
@@ -79,6 +95,7 @@ describe('Test GTR screen', function () {
       backend.whenGET('/api/v3/repos/m6web/service-polls/pulls').respond([{
         'id': 6467,
         'html_url': 'http://example.com/m6web/service-polls/pull/54',
+        'issue_url': '/api/v3/repos/m6web/service-polls/issues/54',
         'number': 54,
         'title': 'PR 54',
         'state': 'open',
@@ -97,11 +114,13 @@ describe('Test GTR screen', function () {
             'full_name': 'm6web/service-polls',
             'name': 'service-polls'
           }
-        }
+        },
+        'milestone': null
       },
       {
         'id': 6468,
         'html_url': 'http://example.com/m6web/service-polls/pull/55',
+        'issue_url': '/api/v3/repos/m6web/service-polls/issues/55',
         'number': 55,
         'title': 'PR 55',
         'state': 'open',
@@ -120,11 +139,15 @@ describe('Test GTR screen', function () {
             'full_name': 'm6web/service-polls',
             'name': 'service-polls'
           }
+        },
+        "milestone": {
+          "title": "release-1.0.0"
         }
       },
       {
         'id': 6469,
         'html_url': 'http://example.com/m6web/service-polls/pull/56',
+        'issue_url': '/api/v3/repos/m6web/service-polls/issues/56',
         'number': 56,
         'title': 'PR 56',
         'state': 'open',
@@ -143,11 +166,15 @@ describe('Test GTR screen', function () {
             'full_name': 'm6web/service-polls',
             'name': 'service-polls'
           }
+        },
+        "milestone": {
+          "title": "release-1.0.0"
         }
       }]);
       backend.whenGET('/api/v3/repos/replay/bundle-polls-client/pulls').respond([{
         'id': 5895,
         'html_url': 'http://example.com/replay/bundle-polls-client/pull/49',
+        'issue_url': '/api/v3/repos/replay/bundle-polls-client/issues/49',
         'number': 49,
         'title': 'PR 49',
         'state': 'open',
@@ -166,11 +193,13 @@ describe('Test GTR screen', function () {
             'full_name': 'replay/bundle-polls-client',
             'name': 'bundle-polls-client'
           }
-        }
+        },
+        'milestone': null
       },
       {
         'id': 5896,
         'html_url': 'http://example.com/replay/bundle-polls-client/pull/50',
+        'issue_url': '/api/v3/repos/replay/bundle-polls-client/issues/50',
         'number': 50,
         'title': 'PR 50',
         'state': 'open',
@@ -189,7 +218,8 @@ describe('Test GTR screen', function () {
             'full_name': 'replay/bundle-polls-client',
             'name': 'bundle-polls-client'
           }
-        }
+        },
+        'milestone': null
       }]);
 
       //Statuses
@@ -219,6 +249,20 @@ describe('Test GTR screen', function () {
         'context': 'foobar',
         'state': 'success'
       }]);
+
+      // Labels
+      backend.whenGET('/api/v3/repos/m6web/service-polls/issues/55/labels').respond([
+        {
+          "name": "need_review",
+          "color": "b60205"
+        }
+      ]);
+      backend.whenGET('/api/v3/repos/m6web/service-polls/issues/56/labels').respond([
+        {
+          "name": "do_not_merge",
+          "color": "ff0000"
+        }
+      ]);
 
       // Others
       backend.whenGET(/.*/).passThrough();

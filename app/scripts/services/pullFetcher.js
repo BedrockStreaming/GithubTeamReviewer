@@ -71,10 +71,26 @@ angular.module('gtrApp')
         });
       };
 
+      var addLabelsToPull = function (pull) {
+        return request(pull.issue_url + '/labels').then(function (response) {
+          pull.labels = response.data;
+        });
+      };
+
+      var removeMilestoneToPull = function (pull) {
+        pull.milestone = null;
+      };
+
       var getRepoPulls = function (repo) {
         return request(repo.pulls_url.replace('{/number}', ''))
           .then(function (response) {
             var filtered = response.data.filter(filterPulls);
+            if (currentTeam.labels) {
+              filtered.map(addLabelsToPull);
+            }
+            if (!currentTeam.milestones) {
+              filtered.map(removeMilestoneToPull);
+            }
 
             return $q.all(filtered.map(addStatusToPull)).then(function() {
               return filtered;
