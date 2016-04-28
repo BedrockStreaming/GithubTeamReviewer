@@ -329,6 +329,20 @@ describe('Test GTR screen', function () {
 
   describe('Test OAuth', function () {
 
+    beforeEach(function () {
+      backend = new HttpBackend(browser);
+
+      // Gatekeeper
+      backend.whenGET('http://gatekeeper:9999/authenticate/c13nt1D/t3mpC0d3')
+        .respond({token:'d4t0k3n'});
+      // Others
+      backend.whenGET(/.*/).passThrough();
+    });
+
+    afterEach(function() {
+        backend.clear();
+    });
+
     it('should display Auth links', function () {
       browser.get('/');
 
@@ -346,13 +360,6 @@ describe('Test GTR screen', function () {
     });
 
     it('should authenticate when github code is passed in url', function () {
-      backend = new HttpBackend(browser);
-      // Gatekeeper
-      backend.whenGET('http://gatekeeper:9999/authenticate/c13nt1D/t3mpC0d3')
-        .respond({token:'d4t0k3n'});
-      // Others
-      backend.whenGET(/.*/).passThrough();
-
       browser.get('/?code=t3mpC0d3&state=c13nt1D#/auth');
       browser.driver.sleep(1000);
       expect(browser.getLocationAbsUrl()).toEqual('/cytron');
@@ -365,8 +372,6 @@ describe('Test GTR screen', function () {
 
       var firstLoginLink = element(by.css('div[ng-show="oauthEnabled"] li a[href="https://github.somewhere.fr/login/oauth/authorize?client_id=c13nt1D&redirect_uri=http%3A%2F%2Flocalhost%3A9000%2F%23%2Fauth&scope=repo%2Cread%3Aorg&state=c13nt1D"]'));
       expect(firstLoginLink.isDisplayed()).toBeTruthy();
-
-      backend.clear();
 
     });
 
