@@ -4,7 +4,7 @@ A monitoring tool that allows you to quickly view all Github pull requests of yo
 
 View the [demo site](http://tech.m6web.fr/GithubTeamReviewer/dist/index.html) for a real example.
 
-![Github Team Reviewer](http://imagizer.imageshack.us/a/img674/2445/PYOJnf.png "Github Team Reviewer")
+![Github Team Reviewer](http://images.6play.fr/v1/images/657788/raw "Github Team Reviewer")
 
 ## Installation
 
