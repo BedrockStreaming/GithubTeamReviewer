@@ -175,6 +175,7 @@ ul {
   padding: 4px 8px;
   border-radius: 4px;
   font-size: 0.875em;
+  color: black;
 }
 
 .badge-label {
@@ -183,6 +184,5 @@ ul {
 
 .badge-milestone {
   background-color: white;
-  color: black;
   margin-right: 4px;
 }
