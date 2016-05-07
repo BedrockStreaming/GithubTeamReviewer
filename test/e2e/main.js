@@ -50,22 +50,6 @@ describe('Test GTR screen', function () {
       element(by.cssContainingText('header select option', 'burton')).click();
       expect(browser.getLocationAbsUrl()).toBe('/burton');
     });
-
-    it('should not display labels and milestones by default', function () {
-      browser.get('#/cytron');
-      expect(element(by.css('.pulls li:eq(0) .badge-label')).isPresent()).toBe(false);
-      expect(element(by.css('.pulls li:eq(0) .badge-milestone')).isPresent()).toBe(false);
-    });
-
-    it('should display labels when enabled', function () {
-      browser.get('#/burton');
-      expect(element(by.css('.pulls li:eq(0) .badge-label')).isPresent()).toBe(true);
-    });
-
-    it('should display milestones when enabled', function () {
-      browser.get('#/service-polls');
-      expect(element(by.css('.pulls li:eq(2) .badge-milestone')).isPresent()).toBe(true);
-    });
   });
 
   describe('Test with API calls', function () {
@@ -140,8 +124,8 @@ describe('Test GTR screen', function () {
             'name': 'service-polls'
           }
         },
-        "milestone": {
-          "title": "release-1.0.0"
+        'milestone': {
+          'title': 'release-1.1.0'
         }
       },
       {
@@ -167,8 +151,8 @@ describe('Test GTR screen', function () {
             'name': 'service-polls'
           }
         },
-        "milestone": {
-          "title": "release-1.0.0"
+        'milestone': {
+          'title': 'release-1.0.0'
         }
       }]);
       backend.whenGET('/api/v3/repos/replay/bundle-polls-client/pulls').respond([{
@@ -253,14 +237,8 @@ describe('Test GTR screen', function () {
       // Labels
       backend.whenGET('/api/v3/repos/m6web/service-polls/issues/55/labels').respond([
         {
-          "name": "need_review",
-          "color": "b60205"
-        }
-      ]);
-      backend.whenGET('/api/v3/repos/m6web/service-polls/issues/56/labels').respond([
-        {
-          "name": "do_not_merge",
-          "color": "ff0000"
+          'name': 'need_review',
+          'color': 'b60205'
         }
       ]);
 
@@ -332,7 +310,7 @@ describe('Test GTR screen', function () {
 
       expect(pulls).toEqual([{
           index: 0,
-          text: '#55 PR 55\nm6web/service-polls 28/08/2014',
+          text: '#55 PR 55 need_review\nm6web/service-polls 28/08/2014',
           class: '',
           avatar: 'http://example.com/papy.jpg',
           pullUrl: 'http://example.com/m6web/service-polls/pull/55'
@@ -354,14 +332,14 @@ describe('Test GTR screen', function () {
         },
         {
           index: 1,
-          text: '#55 PR 55\nm6web/service-polls 28/08/2014',
+          text: '#55 PR 55\nrelease-1.1.0 m6web/service-polls 28/08/2014',
           class: '',
           avatar: 'http://example.com/papy.jpg',
           pullUrl: 'http://example.com/m6web/service-polls/pull/55'
         },
         {
           index: 2,
-          text: '#56 PR 56\nm6web/service-polls 28/10/2014',
+          text: '#56 PR 56\nrelease-1.0.0 m6web/service-polls 28/10/2014',
           class: 'success',
           avatar: 'http://example.com/bieber.jpg',
           pullUrl: 'http://example.com/m6web/service-polls/pull/56'
