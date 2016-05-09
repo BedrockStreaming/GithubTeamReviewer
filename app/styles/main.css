@@ -170,3 +170,19 @@ ul {
 .pr-counter {
   margin-right: 10px;
 }
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.875em;
+  color: black;
+}
+
+.badge-label {
+  margin-left: 4px;
+}
+
+.badge-milestone {
+  background-color: white;
+  margin-right: 4px;
+}

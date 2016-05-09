@@ -19,8 +19,13 @@
 <div class="container">
     <ul class="pulls">
         <li ng-repeat="pr in toArray(pulls) | orderBy:'updated_at':descendingOrder" ng-class="pr.statuses[0].state" class="status">
-            <span class="link"><img class="avatar" ng-src="{{ pr.user.avatar_url}}" title="{{ pr.user.login }}" /><a ng-href="{{pr.html_url}}" >#{{ pr.number }} {{ pr.title }}</a></span>
+            <span class="link">
+                <img class="avatar" ng-src="{{ pr.user.avatar_url}}" title="{{ pr.user.login }}" />
+                <a ng-href="{{pr.html_url}}" >#{{ pr.number }} {{ pr.title }}</a>
+                <span class="badge badge-label" ng-repeat="label in toArray(pr.labels)" style="background-color: #{{ label.color }}">{{ label.name }}</span>
+            </span>
             <span class="pull-right">
+                <span class="badge badge-milestone" ng-show="pr.milestone != null">{{ pr.milestone.title }}</span>
                 <span class="repo"><a ng-href="{{pr.head.repo.html_url}}" >{{ pr.head.repo.full_name }}</a></span>
                 <span class="date">{{pr.updated_at | date:"dd/MM/yyyy"}}</span>
             </span>

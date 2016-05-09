@@ -22,6 +22,18 @@ angular.module('gtrApp')
       $scope.descendingOrder = true;
     }
 
+    if (typeof(config.teams[team].labels) !== 'undefined') {
+      $scope.labels = config.teams[team].labels;
+    } else {
+      $scope.labels = false;
+    }
+
+    if (typeof(config.teams[team].milestones) !== 'undefined') {
+      $scope.milestones = config.teams[team].milestones;
+    } else {
+      $scope.milestones = false;
+    }
+
     var statePriorities = {
       'error':   4,
       'failure': 3,

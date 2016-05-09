@@ -7,7 +7,9 @@
                 "projects": ["repo1", "repo2"],
                 "orgs": ["orgname1", "orgname2"],
                 "token": "apiToken",
-                "descendingOrder": true
+                "descendingOrder": true,
+                "labels": true,
+                "milestones": true
             },
             "teamWithOAuth": {
                 "members": ["username4", "username2", "username5"],

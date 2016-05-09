@@ -79,6 +79,7 @@ describe('Test GTR screen', function () {
       backend.whenGET('/api/v3/repos/m6web/service-polls/pulls').respond([{
         'id': 6467,
         'html_url': 'http://example.com/m6web/service-polls/pull/54',
+        'issue_url': '/api/v3/repos/m6web/service-polls/issues/54',
         'number': 54,
         'title': 'PR 54',
         'state': 'open',
@@ -97,11 +98,13 @@ describe('Test GTR screen', function () {
             'full_name': 'm6web/service-polls',
             'name': 'service-polls'
           }
-        }
+        },
+        'milestone': null
       },
       {
         'id': 6468,
         'html_url': 'http://example.com/m6web/service-polls/pull/55',
+        'issue_url': '/api/v3/repos/m6web/service-polls/issues/55',
         'number': 55,
         'title': 'PR 55',
         'state': 'open',
@@ -120,11 +123,15 @@ describe('Test GTR screen', function () {
             'full_name': 'm6web/service-polls',
             'name': 'service-polls'
           }
+        },
+        'milestone': {
+          'title': 'release-1.1.0'
         }
       },
       {
         'id': 6469,
         'html_url': 'http://example.com/m6web/service-polls/pull/56',
+        'issue_url': '/api/v3/repos/m6web/service-polls/issues/56',
         'number': 56,
         'title': 'PR 56',
         'state': 'open',
@@ -143,11 +150,15 @@ describe('Test GTR screen', function () {
             'full_name': 'm6web/service-polls',
             'name': 'service-polls'
           }
+        },
+        'milestone': {
+          'title': 'release-1.0.0'
         }
       }]);
       backend.whenGET('/api/v3/repos/replay/bundle-polls-client/pulls').respond([{
         'id': 5895,
         'html_url': 'http://example.com/replay/bundle-polls-client/pull/49',
+        'issue_url': '/api/v3/repos/replay/bundle-polls-client/issues/49',
         'number': 49,
         'title': 'PR 49',
         'state': 'open',
@@ -166,11 +177,13 @@ describe('Test GTR screen', function () {
             'full_name': 'replay/bundle-polls-client',
             'name': 'bundle-polls-client'
           }
-        }
+        },
+        'milestone': null
       },
       {
         'id': 5896,
         'html_url': 'http://example.com/replay/bundle-polls-client/pull/50',
+        'issue_url': '/api/v3/repos/replay/bundle-polls-client/issues/50',
         'number': 50,
         'title': 'PR 50',
         'state': 'open',
@@ -189,7 +202,8 @@ describe('Test GTR screen', function () {
             'full_name': 'replay/bundle-polls-client',
             'name': 'bundle-polls-client'
           }
-        }
+        },
+        'milestone': null
       }]);
 
       //Statuses
@@ -219,6 +233,14 @@ describe('Test GTR screen', function () {
         'context': 'foobar',
         'state': 'success'
       }]);
+
+      // Labels
+      backend.whenGET('/api/v3/repos/m6web/service-polls/issues/55/labels').respond([
+        {
+          'name': 'need_review',
+          'color': 'b60205'
+        }
+      ]);
 
       // Others
       backend.whenGET(/.*/).passThrough();
@@ -288,7 +310,7 @@ describe('Test GTR screen', function () {
 
       expect(pulls).toEqual([{
           index: 0,
-          text: '#55 PR 55\nm6web/service-polls 28/08/2014',
+          text: '#55 PR 55 need_review\nm6web/service-polls 28/08/2014',
           class: '',
           avatar: 'http://example.com/papy.jpg',
           pullUrl: 'http://example.com/m6web/service-polls/pull/55'
@@ -310,14 +332,14 @@ describe('Test GTR screen', function () {
         },
         {
           index: 1,
-          text: '#55 PR 55\nm6web/service-polls 28/08/2014',
+          text: '#55 PR 55\nrelease-1.1.0 m6web/service-polls 28/08/2014',
           class: '',
           avatar: 'http://example.com/papy.jpg',
           pullUrl: 'http://example.com/m6web/service-polls/pull/55'
         },
         {
           index: 2,
-          text: '#56 PR 56\nm6web/service-polls 28/10/2014',
+          text: '#56 PR 56\nrelease-1.0.0 m6web/service-polls 28/10/2014',
           class: 'success',
           avatar: 'http://example.com/bieber.jpg',
           pullUrl: 'http://example.com/m6web/service-polls/pull/56'

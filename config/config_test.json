@@ -23,13 +23,15 @@
             "burton": {
                 "members": ["papy", "worker"],
                 "orgs": ["m6web"],
-                "apiUrl": "/api/v3"
+                "apiUrl": "/api/v3",
+                "labels": true
             },
             "service-polls": {
                 "descendingOrder": false,
                 "projects": ["service-polls"],
                 "orgs": ["m6web", "replay"],
-                "apiUrl": "/api/v3"
+                "apiUrl": "/api/v3",
+                "milestones": true
             }
         }
     }
