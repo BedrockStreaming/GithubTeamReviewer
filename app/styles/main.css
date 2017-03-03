@@ -193,3 +193,7 @@ ul {
   font-size: 0.875em;
   border-style: solid;
 }
+
+.reviewer {
+  border-color: blue;
+}

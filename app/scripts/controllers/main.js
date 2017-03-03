@@ -91,11 +91,17 @@ angular.module('gtrApp')
       return array;
     };
 
-    $scope.countReviews = function(reviews, state) {
+    $scope.countReviews = function(reviews, state, filterByReviewer) {
       reviews = reviews || [];
-      return reviews.filter(function(review) {
-        return review.state === state;
-      }).length;
+      reviews = reviews.filter(function(review) {
+          return review.state === state;
+      });
+      if(filterByReviewer) {
+          reviews = reviews.filter(function(review) {
+              return review.user.login === $scope.reviewer;
+          });
+      }
+      return reviews.length;
     };
 
     $scope.logout = function(clientId) {

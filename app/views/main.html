@@ -14,6 +14,7 @@
   </div>
   <span class="pull-right pr-counter">{{ toArray(pulls).length }} PR</span>
   <select ng-model="team" ng-options="teamName as teamName for (teamName, team) in teams"></select>
+  <input ng-show="reviews" class="pull-right" ng-model="reviewer" type="text" placeholder="Reviewer login"/>
 </header>
 
 <div class="container">
@@ -23,9 +24,9 @@
                 <img class="avatar" ng-src="{{ pr.user.avatar_url}}" title="{{ pr.user.login }}" />
                 <a ng-href="{{pr.html_url}}" >#{{ pr.number }} {{ pr.title }}</a>
                 <span class="badge badge-label" ng-repeat="label in toArray(pr.labels)" style="background-color: #{{ label.color }}">{{ label.name }}</span>
-                <span ng-show="countReviews(pr.reviews_unique, 'APPROVED')" class="badge-review fa fa-thumbs-up">{{ countReviews(pr.reviews_unique, 'APPROVED') }}</span>
-                <span ng-show="countReviews(pr.reviews_unique, 'CHANGES_REQUESTED')" class="badge-review fa fa-thumbs-down">{{ countReviews(pr.reviews_unique, 'CHANGES_REQUESTED') }}</span>
-                <span ng-show="countReviews(pr.reviews_unique, 'COMMENTED')" class="badge-review fa fa-comment">{{ countReviews(pr.reviews_unique, 'COMMENTED') }}</span>
+                <span ng-show="countReviews(pr.reviews_unique, 'APPROVED')" ng-class="{'reviewer' : countReviews(pr.reviews_unique, 'APPROVED', true)}" class="badge-review fa fa-thumbs-up">{{ countReviews(pr.reviews_unique, 'APPROVED') }}</span>
+                <span ng-show="countReviews(pr.reviews_unique, 'CHANGES_REQUESTED')" ng-class="{'reviewer' : countReviews(pr.reviews_unique, 'CHANGES_REQUESTED', true)}" class="badge-review fa fa-thumbs-down">{{ countReviews(pr.reviews_unique, 'CHANGES_REQUESTED') }}</span>
+                <span ng-show="countReviews(pr.reviews_unique, 'COMMENTED')" ng-class="{'reviewer' : countReviews(pr.reviews_unique, 'COMMENTED', true)}" class="badge-review fa fa-comment">{{ countReviews(pr.reviews_unique, 'COMMENTED') }}</span>
             </span>
             <span class="pull-right">
                 <span class="badge badge-milestone" ng-show="pr.milestone != null">{{ pr.milestone.title }}</span>
