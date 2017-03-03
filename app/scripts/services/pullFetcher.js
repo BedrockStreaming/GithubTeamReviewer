@@ -84,6 +84,23 @@ angular.module('gtrApp')
       var addReviewsToPull = function (pull) {
         return request(pull.url + '/reviews').then(function (response) {
           pull.reviews = response.data;
+          pull.reviews_unique = pull.reviews;
+
+          // Keep only last approval/disapproval per users
+          var usersWithReview = {};
+          pull.reviews_unique.reverse();
+          pull.reviews_unique = pull.reviews_unique.filter(function(review) {
+            // Always keep comments
+            if(review.state === 'COMMENTED') {
+              return true;
+            }
+            if(usersWithReview[review.user.id]) {
+              return false;
+            }
+            usersWithReview[review.user.id] = true;
+            return true;
+          });
+          pull.reviews_unique.reverse();
         });
       };
 
