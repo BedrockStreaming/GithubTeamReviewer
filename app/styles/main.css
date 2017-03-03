@@ -186,3 +186,10 @@ ul {
   background-color: white;
   margin-right: 4px;
 }
+
+.badge-review {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.875em;
+  border-style: solid;
+}

@@ -34,6 +34,12 @@ angular.module('gtrApp')
       $scope.milestones = false;
     }
 
+    if (typeof(config.teams[team].reviews) !== 'undefined') {
+      $scope.reviews = config.teams[team].reviews;
+    } else {
+      $scope.reviews = false;
+    }
+
     var statePriorities = {
       'error':   4,
       'failure': 3,
@@ -83,6 +89,13 @@ angular.module('gtrApp')
       });
 
       return array;
+    };
+
+    $scope.countReviews = function(reviews, state) {
+      reviews = reviews || [];
+      return reviews.filter(function(review) {
+        return review.state === state;
+      }).length;
     };
 
     $scope.logout = function(clientId) {

@@ -8,17 +8,21 @@ angular.module('gtrApp')
 
       var currentTeam,
         currentApiUrl,
-        authHeader;
+        headers;
 
       var pullFetcher = {
         pulls: {},
         setTeam: function (team) {
           currentTeam   = team;
           currentApiUrl = team.apiUrl || baseUrl;
-          authHeader    = {};
+          headers    = {};
+
+          if (team.reviews) {
+            headers.Accept = 'application/vnd.github.black-cat-preview+json';
+          }
 
           if (team.token) {
-            authHeader = {'Authorization': 'token ' + team.token};
+            headers.Authorization = 'token ' + team.token;
           }
 
           // Empty pulls object
@@ -53,7 +57,7 @@ angular.module('gtrApp')
       var request = function (url) {
         return $http({
           url: url,
-          headers: authHeader
+          headers: headers
         });
       };
 
@@ -77,6 +81,12 @@ angular.module('gtrApp')
         });
       };
 
+      var addReviewsToPull = function (pull) {
+        return request(pull.url + '/reviews').then(function (response) {
+          pull.reviews = response.data;
+        });
+      };
+
       var removeMilestoneToPull = function (pull) {
         pull.milestone = null;
       };
@@ -90,6 +100,9 @@ angular.module('gtrApp')
             }
             if (!currentTeam.milestones) {
               filtered.map(removeMilestoneToPull);
+            }
+            if (currentTeam.reviews) {
+              filtered.map(addReviewsToPull);
             }
 
             return $q.all(filtered.map(addStatusToPull)).then(function() {

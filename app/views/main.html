@@ -23,6 +23,9 @@
                 <img class="avatar" ng-src="{{ pr.user.avatar_url}}" title="{{ pr.user.login }}" />
                 <a ng-href="{{pr.html_url}}" >#{{ pr.number }} {{ pr.title }}</a>
                 <span class="badge badge-label" ng-repeat="label in toArray(pr.labels)" style="background-color: #{{ label.color }}">{{ label.name }}</span>
+                <span ng-show="countReviews(pr.reviews, 'APPROVED')" class="badge-review fa fa-thumbs-up">{{ countReviews(pr.reviews, 'APPROVED') }}</span>
+                <span ng-show="countReviews(pr.reviews, 'CHANGES_REQUESTED')" class="badge-review fa fa-thumbs-down">{{ countReviews(pr.reviews, 'CHANGES_REQUESTED') }}</span>
+                <span ng-show="countReviews(pr.reviews, 'COMMENTED')" class="badge-review fa fa-comment">{{ countReviews(pr.reviews, 'COMMENTED') }}</span>
             </span>
             <span class="pull-right">
                 <span class="badge badge-milestone" ng-show="pr.milestone != null">{{ pr.milestone.title }}</span>
