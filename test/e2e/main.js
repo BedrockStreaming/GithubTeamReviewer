@@ -253,7 +253,7 @@ describe('Test GTR screen', function () {
     var getPulls = function(element, index) {
       return {
         index: index,
-        text: element.getText(),
+        text: element.getText().then(function (t) { return t.trim(); }),
         class: element.getAttribute('class').then(function (classes) {
           if (classes.match(/(success|failure|pending)/)) {
             return classes.replace(/^.*(success|failure|pending).*$/, '$1');
