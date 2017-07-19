@@ -1,6 +1,9 @@
 'use strict';
 
 var gulp = require('gulp');
+var path = require('path');
+var SeleniumConfig = require('webdriver-manager/built/lib/config').Config;
+var SeleniumStandAlone = require('webdriver-manager/built/lib/binaries/stand_alone').StandAlone;
 
 var $ = require('gulp-load-plugins')({
    pattern: ['gulp-*', 'browser-sync', 'run-sequence']
@@ -15,7 +18,11 @@ gulp.task('scripts-tests', function () {
 });
 
 // Downloads the selenium webdriver
-gulp.task('webdriver-update', $.protractor.webdriver_update);
+gulp.task('webdriver-update', function (done) {
+  $.protractor.webdriver_update({
+    browsers: ['chrome', 'versions.chrome=2.30', 'versions.standalone=3.4.0']
+  }, done)
+});
 
 gulp.task('webdriver-standalone', $.protractor.webdriver_standalone);
 
@@ -24,8 +31,13 @@ gulp.task('protractor-only', ['webdriver-update'], function (done) {
     'test/e2e/**/*.js'
   ];
 
+  var seleniumStandAlone = new SeleniumStandAlone();
+  seleniumStandAlone.versionCustom = '3.4.0';
+  var seleniumServerJar = path.resolve(SeleniumConfig.getSeleniumDir(), seleniumStandAlone.executableFilename());
+
   gulp.src(testFiles)
     .pipe($.protractor.protractor({
+      args: ['--seleniumServerJar='+seleniumServerJar],
       configFile: 'test/protractor.conf.js'
     }))
     .on('error', function (err) {
