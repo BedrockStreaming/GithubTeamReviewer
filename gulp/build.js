@@ -80,11 +80,11 @@ gulp.task('extras', function(){
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('clean', function (done) {
-  del([
+gulp.task('clean', function () {
+  return del([
     '.tmp',
     'dist'
-  ], done);
+  ]);
 });
 
 gulp.task('build', function (done) {
