@@ -204,6 +204,69 @@ describe('Test GTR screen', function () {
           }
         },
         'milestone': null
+      },
+      {
+        'id': 6580,
+        'html_url': 'http://example.com/replay/bundle-polls-client/pull/57',
+        'issue_url': '/api/v3/repos/replay/bundle-polls-client/issues/57',
+        'number': 57,
+        'title': 'PR 57',
+        'state': 'open',
+        'user': {
+          'login': 'worker',
+          'avatar_url': 'http://example.com/worker.jpg'
+        },
+        'assignee': {
+          'login': 'karlouche',
+          'avatar_url': 'http://example.com/karlouche.jpg'
+        },
+        'created_at': '2014-08-09T16:27:45Z',
+        'updated_at': '2014-08-10T11:54:03Z',
+        'closed_at': null,
+        'merged_at': null,
+        'statuses_url': '/api/v3/repos/replay/bundle-polls-client/statuses/57',
+        'head': {
+          'repo': {
+            'html_url': 'http://example.com/replay/bundle-polls-client',
+            'full_name': 'replay/bundle-polls-client',
+            'name': 'bundle-polls-client'
+          }
+        },
+        'milestone': null
+      },
+      {
+        'id': 5898,
+        'html_url': 'http://example.com/replay/bundle-polls-client/pull/58',
+        'issue_url': '/api/v3/repos/replay/bundle-polls-client/issues/58',
+        'number': 58,
+        'title': 'PR 58',
+        'state': 'open',
+        'user': {
+          'login': 'papy',
+          'avatar_url': 'http://example.com/papy.jpg'
+        },
+        'assignees': [
+          {
+            'login': 'papy',
+            'avatar_url': 'http://example.com/papy.jpg'
+          },{
+            'login': 'karlouche',
+            'avatar_url': 'http://example.com/karlouche.jpg'
+          }
+        ],
+        'created_at': '2014-08-09T16:27:45Z',
+        'updated_at': '2014-08-10T11:54:03Z',
+        'closed_at': null,
+        'merged_at': null,
+        'statuses_url': '/api/v3/repos/replay/bundle-polls-client/statuses/58',
+        'head': {
+          'repo': {
+            'html_url': 'http://example.com/replay/bundle-polls-client',
+            'full_name': 'replay/bundle-polls-client',
+            'name': 'bundle-polls-client'
+          }
+        },
+        'milestone': null
       }]);
 
       //Statuses
@@ -233,6 +296,8 @@ describe('Test GTR screen', function () {
         'context': 'foobar',
         'state': 'success'
       }]);
+      backend.whenGET('/api/v3/repos/replay/bundle-polls-client/statuses/57').respond([]);
+      backend.whenGET('/api/v3/repos/replay/bundle-polls-client/statuses/58').respond([]);
 
       // Labels
       backend.whenGET('/api/v3/repos/m6web/service-polls/issues/55/labels').respond([
@@ -288,13 +353,27 @@ describe('Test GTR screen', function () {
         },
         {
           index: 2,
+          text: '#58 PR 58\nreplay/bundle-polls-client 10/08/2014',
+          class: '',
+          avatar: 'http://example.com/papy.jpg',
+          pullUrl: 'http://example.com/replay/bundle-polls-client/pull/58'
+        },
+        {
+          index: 3,
+          text: '#57 PR 57\nreplay/bundle-polls-client 10/08/2014',
+          class: '',
+          avatar: 'http://example.com/worker.jpg',
+          pullUrl: 'http://example.com/replay/bundle-polls-client/pull/57'
+        },
+        {
+          index: 4,
           text: '#54 PR 54\nm6web/service-polls 28/07/2014',
           class: '',
           avatar: 'http://example.com/karlouche.jpg',
           pullUrl: 'http://example.com/m6web/service-polls/pull/54'
         },
         {
-          index: 3,
+          index: 5,
           text: '#49 PR 49\nreplay/bundle-polls-client 28/07/2014',
           class: 'pending',
           avatar: 'http://example.com/bieber.jpg',
