@@ -24,6 +24,11 @@ gulp.task('scripts:strict', function () {
     .pipe($.size());
 });
 
+gulp.task('fonts', function() {
+   return gulp.src(['app/bower_components/font-awesome/fonts/fontawesome-webfont.*'])
+    .pipe(gulp.dest('dist/fonts/'));
+});
+
 gulp.task('partials', function () {
   return gulp.src('app/views/**/*.html')
     .pipe($.minifyHtml({
@@ -91,7 +96,7 @@ gulp.task('build', function (done) {
   $.runSequence(
     'clean',
     ['config', 'wiredep'],
-    ['html', 'extras'],
+    ['html', 'fonts', 'extras'],
     done
   );
 });
