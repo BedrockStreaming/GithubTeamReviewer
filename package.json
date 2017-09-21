@@ -1,6 +1,6 @@
 {
   "name": "github-team-reviewer",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "dependencies": {
     "bower": "^1.3.12",
     "browser-sync": "^2.12.5",
