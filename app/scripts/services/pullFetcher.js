@@ -62,7 +62,23 @@ angular.module('gtrApp')
       };
 
       var filterPulls = function (pull) {
-        return (currentTeam.members || [pull.user.login]).indexOf(pull.user.login) !== -1;
+        var members = (currentTeam.members || [pull.user.login]);
+        var createdByMember = members.indexOf(pull.user.login) !== -1;
+        if (createdByMember || (!pull.assignees && !pull.assignee)) {
+          return createdByMember;
+        }
+        var assignedToMember = false;
+        if (pull.assignees) {
+          pull.assignees.forEach(function (assignee) {
+            if (members.indexOf(assignee.login) !== -1) {
+              assignedToMember = true;
+            }
+          });
+        }
+        if (!assignedToMember && pull.assignee) {
+          assignedToMember = members.indexOf(pull.assignee.login) !== -1;
+        }
+        return assignedToMember;
       };
 
       var filterRepos = function (repo) {
